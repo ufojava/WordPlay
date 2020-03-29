@@ -9,10 +9,47 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    
+    
     var body: some View {
-        Text("Hello, World!")
-    }
+        
+        
+        
+        NavigationView {
+        
+                        ZStack {
+                            
+                            Image("4LettersFrontScreen")
+                                .resizable()
+                            
+                                .scaledToFill()
+                            
+                                .edgesIgnoringSafeArea(.all)
+                                
+                                
+                        
+                        VStack {
+                        
+                        Text("Hello, World!")
+                        
+                            //fourLetter()
+                            
+                            
+                        }
+            }
+        
+        .navigationBarTitle(Text("Home 🏚"))
+        
+        }
+        
 }
+
+}
+
+
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
