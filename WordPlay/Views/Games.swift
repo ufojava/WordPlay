@@ -184,23 +184,109 @@ struct fourLetter: View {
                                 
                                 Spacer().frame(height:40)
                                 
-                                //Enter the
-                                HStack {
-                                    
-                                    ForEach(0..<alphabetOne.count) {rowOne in
-                                    
-                                        //Text("\(self.alphabetOne[rowOne])")
-                                        
-                                        FormatTile(alphabet: self.alphabetOne[rowOne])
-                                            .background(Color.orange)
-                                    
+                                VStack {
+                                
+                                            //HStack for AlphabeOne
+                                            HStack {
+                                                
+                                                ForEach(0..<alphabetOne.count) {rowOne in
+                                                
+                                                    
+                                                    FormatTile(alphabet: self.alphabetOne[rowOne])
+                                                        .background(Color.orange)
+                                                
+                                                        
+                                                
+                                            }
                                             
+                                            
+                                            }//End of HStack on Row one
                                     
-                                }
-                                
-                                
-                                }
-                                
+                                    Spacer().frame(height:5) //Space between alphabets
+                                    
+                                    
+                                    //HStack for AlphabeTwo
+                                    HStack {
+                                        
+                                        ForEach(0..<alphabetTwo.count) {rowTwo in
+                                            
+                                            FormatTile(alphabet: self.alphabetTwo[rowTwo])
+                                                .background(Color.green)
+                                            
+                                            
+                                        }
+                                    }//End of HStack on Row Two
+                                    
+                                    Spacer().frame(height:5) //Space between alphabets
+                                    
+                                    //HStack for AlphabetThree
+                                    HStack {
+                                        
+                                        ForEach(0..<alphabetThree.count) {rowThree in
+                                            
+                                            FormatTile(alphabet: self.alphabetThree[rowThree])
+                                                .background(Color.red)
+                                            
+                                        }
+                                        
+                                        
+                                        
+                                    }//End of Hstack on Row Three
+                                    
+                                    Spacer().frame(height:5) //Space between alphabets
+                                    
+                                    //HStack for AlphabetFour
+                                    HStack {
+                                        
+                                        
+                                        ForEach(0..<alphabetFour.count) {rowFour in
+                                            
+                                            FormatTile(alphabet: self.alphabetFour[rowFour])
+                                                .background(Color.init(red: 0.2, green: 0.7, blue: 0.6))
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                    }//End of HStack
+                                    
+                                    Spacer().frame(height:5) //Space between alphabets
+                                    
+                                    //HStack for AlphabetFive
+                                    HStack {
+                                        
+                                        ForEach(0..<alphabetFive.count) {rowFive in
+                                            
+                                            FormatTile(alphabet: self.alphabetFive[rowFive])
+                                                .background(Color.blue)
+                                            
+                                            
+                                        }
+                                        
+                                    }//End of Hstack alphabeFive
+                                    
+                                    Spacer().frame(height:5) //Space between alphabets
+                                    
+                                    /*
+                                    
+                                   //HStack for AlphabetSix
+                                    HStack {
+                                        
+                                        ForEach(0..<alphabetSix.count) {rowSix in
+                                            
+                                            FormatTile(alphabet: self.alphabetSix[rowSix])
+                                               
+                                            
+                                            
+                                        }
+                                        
+                                    }//End of Hstack alphabeSix
+                                    
+                                    */
+                                    
+                                    
+                                    
+                                }//End of VStack
                                 
                                 if stateOfAllUserInputs {
                                     
