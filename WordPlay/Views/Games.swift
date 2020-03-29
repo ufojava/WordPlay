@@ -267,26 +267,22 @@ struct fourLetter: View {
                                     
                                     Spacer().frame(height:5) //Space between alphabets
                                     
-                                    /*
-                                    
-                                   //HStack for AlphabetSix
-                                    HStack {
-                                        
-                                        ForEach(0..<alphabetSix.count) {rowSix in
-                                            
-                                            FormatTile(alphabet: self.alphabetSix[rowSix])
-                                               
-                                            
-                                            
-                                        }
-                                        
-                                    }//End of Hstack alphabeSix
-                                    
-                                    */
-                                    
+                                   
                                     
                                     
                                 }//End of VStack
+                                
+                                HStack {
+                                    
+                                    ForEach(0..<alphabetSix.count) {rowSix in
+                                        
+                                        
+                                        FormatTile(alphabet: self.alphabetSix[rowSix])
+                                            .background(Color.init(red: 0.1, green: 0.4, blue: 0.2))
+                                        
+                                    }
+                                    
+                                }
                                 
                                 if stateOfAllUserInputs {
                                     
