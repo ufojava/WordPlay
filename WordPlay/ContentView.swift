@@ -10,6 +10,10 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State private var showGameGameButton = false
+    @State private var showTutorialButton = false
+    @State private var showDictionaryButton = false
+    
     
     
     var body: some View {
@@ -26,22 +30,82 @@ struct ContentView: View {
                                 .scaledToFill()
                             
                                 .edgesIgnoringSafeArea(.all)
+                            
+                                .onAppear() {
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    
+                                        withAnimation {
+                                            self.showGameGameButton = true
+                                        }
+                                    }
+                                    
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    
+                                        withAnimation {
+                                            
+                                            self.showTutorialButton = true
+                                        }
+                                    
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                    
+                                        withAnimation {
+                                            
+                                            self.showDictionaryButton = true
+                                        }
+                                        
+                                    }
+                                    
+                            }
                                 
                                 
                         
                         VStack {
                         
-                        //Text("Hello, World!")
-                        
-                            //fourLetter()
+                            if showGameGameButton {
                             
                             NavigationLink(destination: GamePlay()) {
                                 
                                 
-                                Text("Play")
+                                Text("Play Game").font(.custom("Noteworthy", size: 25))
+                                    .frame(width:150,height: 50)
+                                    .background(Color.blue)
+                                    .foregroundColor(Color.white)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                    .animation(.easeIn)
+                                
                             }
+                                
+                            }//End Game Button
+                            
+                            if showTutorialButton {
+                            
+                            Spacer().frame(height:10)
+                            
+                                Text("Tutorial").font(.custom("Noteworthy", size: 25))
+                                    .frame(width:150,height: 50)
+                                    .background(Color.blue)
+                                    .foregroundColor(Color.white)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                    .animation(.easeIn)
+                                
+                            }//End turorial button
                             
                             
+                            Spacer().frame(height:10)
+                            
+                            if showDictionaryButton {
+                            
+                                Text("Dictionary").font(.custom("Noteworthy", size: 25))
+                                    .frame(width:150,height: 50)
+                                    .background(Color.blue)
+                                    .foregroundColor(Color.white)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                    .animation(.easeIn)
+                            
+                            }
                         }
             }
         

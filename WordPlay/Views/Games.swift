@@ -16,7 +16,7 @@ struct GamePlay: View {
     var body: some View {
         
         
-        NavigationView {
+        //NavigationView {
         
         
         //Text("Place HOlder")
@@ -25,7 +25,7 @@ struct GamePlay: View {
             
         }
         
-    }
+   //}
     
     
 }
