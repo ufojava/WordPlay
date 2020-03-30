@@ -31,9 +31,15 @@ struct ContentView: View {
                         
                         VStack {
                         
-                        Text("Hello, World!")
+                        //Text("Hello, World!")
                         
                             //fourLetter()
+                            
+                            NavigationLink(destination: GamePlay()) {
+                                
+                                
+                                Text("Play")
+                            }
                             
                             
                         }

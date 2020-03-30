@@ -70,6 +70,12 @@ struct fourLetter: View {
     @State private var alphabetFive = ["G","Q","R","J","V"]
     @State private var alphabetSix = ["F"]
     
+    //Letter Selector Counter
+    @State private var playAlphabetCounter = 0
+    
+    //Played words
+    @State private var playedWords: [String] = []
+    
     
     
     
@@ -131,24 +137,24 @@ struct fourLetter: View {
                             
                                     HStack {
                                         
-                                        TextField("One", text: $userLetterOne).autocapitalization(.allCharacters).multilineTextAlignment(.center)
+                                        Text("\(self.userLetterOne)").multilineTextAlignment(.center).foregroundColor(Color.white)
                                             .frame(width:50, height:50)
                                             .background(Color.gray)
                                             .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3)).padding()
                                         
                                            
-                                        TextField("Two", text: $userLetterTwo).autocapitalization(.allCharacters).multilineTextAlignment(.center)
+                                        Text("\(self.userLetterTwo)").multilineTextAlignment(.center).foregroundColor(Color.white)
                                             .frame(width:50, height:50)
                                             .background(Color.gray)
                                             .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3)).padding()
                                         
                                         
-                                        TextField("Three", text: $userLetterThree).autocapitalization(.allCharacters).multilineTextAlignment(.center)
+                                        Text("\(self.userLetterThree)").multilineTextAlignment(.center).foregroundColor(Color.white)
                                             .frame(width:50, height:50)
                                             .background(Color.gray)
                                             .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3)).padding()
                                         
-                                        TextField("Four", text: $userLetterFour).autocapitalization(.allCharacters).multilineTextAlignment(.center)
+                                        Text("\(self.userLetterFour)").multilineTextAlignment(.center).foregroundColor(Color.white)
                                             .frame(width:50, height:50)
                                             .background(Color.gray)
                                             .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3)).padding()
@@ -164,20 +170,32 @@ struct fourLetter: View {
                                         
                                         self.stateOfAllUserInputs.toggle()
                                         self.collectAllUserInputs = self.userLetterOne + self.userLetterTwo + self.userLetterThree + self.userLetterFour
+                                        self.playedWords.append(self.collectAllUserInputs)
+                                        
+                                        
+                                        //Clear Screen
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                            
+                                            self.userLetterOne = ""
+                                            self.userLetterTwo = ""
+                                            self.userLetterThree = ""
+                                            self.userLetterFour = ""
+                                            self.playAlphabetCounter = 0
+                                            self.stateOfAllUserInputs.toggle()
+                                        }
                                         
                                         
                                     }) {
                                         
                                         Text("Play Word").foregroundColor(Color.white)
+                                            .frame(width:100,height: 30)
+                                            .background(Color.blue)
+                                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
                                         
                                         
                                         
                                     }
                                     
-                                    
-                                    
-                                    
-                                    Text("\(self.collectAllUserInputs)")
                                   
                                     
                                 }
@@ -194,6 +212,42 @@ struct fourLetter: View {
                                                     
                                                     FormatTile(alphabet: self.alphabetOne[rowOne])
                                                         .background(Color.orange)
+                                                    
+                                                        .onTapGesture {
+                                                            print(self.alphabetOne[rowOne])
+                                                            
+                                                            if self.playAlphabetCounter == 0 && self.playAlphabetCounter < 5 {
+                                                                
+                                                                self.userLetterOne = self.alphabetOne[rowOne]
+                                                                
+                                                                //Add play to counter
+                                                                self.playAlphabetCounter += 1
+                                                                
+                                                            } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
+                                                                
+                                                                self.userLetterTwo = self.alphabetOne[rowOne]
+                                                                
+                                                                //Add play to counter
+                                                                self.playAlphabetCounter += 1
+                                                                
+                                                            } else if self.playAlphabetCounter == 2 && self.playAlphabetCounter < 5 {
+                                                                
+                                                                self.userLetterThree = self.alphabetOne[rowOne]
+                                                                
+                                                                //Add play to counter
+                                                                self.playAlphabetCounter += 1
+                                                                
+                                                                
+                                                            } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
+                                                                
+                                                                self.userLetterFour = self.alphabetOne[rowOne]
+                                                                
+                                                                //Add to Play counter
+                                                                self.playAlphabetCounter += 1
+                                                                
+                                                                
+                                                            }
+                                                    }
                                                 
                                                         
                                                 
@@ -213,6 +267,40 @@ struct fourLetter: View {
                                             FormatTile(alphabet: self.alphabetTwo[rowTwo])
                                                 .background(Color.green)
                                             
+                                                .onTapGesture {
+                                                    if self.playAlphabetCounter == 0 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterOne = self.alphabetTwo[rowTwo]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                    } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterTwo = self.alphabetTwo[rowTwo]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                    } else if self.playAlphabetCounter == 2 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterThree = self.alphabetTwo[rowTwo]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                        
+                                                    } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterFour = self.alphabetTwo[rowTwo]
+                                                        
+                                                        //Add to Play counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                        
+                                                    }
+                                            }
+                                            
                                             
                                         }
                                     }//End of HStack on Row Two
@@ -226,6 +314,42 @@ struct fourLetter: View {
                                             
                                             FormatTile(alphabet: self.alphabetThree[rowThree])
                                                 .background(Color.red)
+                                            
+                                                .onTapGesture {
+                                                    
+                                                    if self.playAlphabetCounter == 0 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterOne = self.alphabetThree[rowThree]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                    } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterTwo = self.alphabetThree[rowThree]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                    } else if self.playAlphabetCounter == 2 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterThree = self.alphabetThree[rowThree]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                        
+                                                    } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterFour = self.alphabetThree[rowThree]
+                                                        
+                                                        //Add to Play counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                        
+                                                    }
+                                                    
+                                            }
                                             
                                         }
                                         
@@ -244,6 +368,40 @@ struct fourLetter: View {
                                             FormatTile(alphabet: self.alphabetFour[rowFour])
                                                 .background(Color.init(red: 0.2, green: 0.7, blue: 0.6))
                                             
+                                                .onTapGesture {
+                                                    if self.playAlphabetCounter == 0 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterOne = self.alphabetFour[rowFour]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                    } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterTwo = self.alphabetFour[rowFour]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                    } else if self.playAlphabetCounter == 2 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterThree = self.alphabetFour[rowFour]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                        
+                                                    } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterFour = self.alphabetFour[rowFour]
+                                                        
+                                                        //Add to Play counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                        
+                                                    }
+                                            }
+                                            
                                             
                                         }
                                         
@@ -259,6 +417,39 @@ struct fourLetter: View {
                                             
                                             FormatTile(alphabet: self.alphabetFive[rowFive])
                                                 .background(Color.blue)
+                                                .onTapGesture {
+                                                    if self.playAlphabetCounter == 0 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterOne = self.alphabetFive[rowFive]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                    } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterTwo = self.alphabetFive[rowFive]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                    } else if self.playAlphabetCounter == 2 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterThree = self.alphabetFive[rowFive]
+                                                        
+                                                        //Add play to counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                        
+                                                    } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
+                                                        
+                                                        self.userLetterFour = self.alphabetFive[rowFive]
+                                                        
+                                                        //Add to Play counter
+                                                        self.playAlphabetCounter += 1
+                                                        
+                                                        
+                                                    }
+                                            }
                                             
                                             
                                         }
@@ -280,6 +471,40 @@ struct fourLetter: View {
                                         FormatTile(alphabet: self.alphabetSix[rowSix])
                                             .background(Color.init(red: 0.1, green: 0.4, blue: 0.2))
                                         
+                                            .onTapGesture {
+                                                if self.playAlphabetCounter == 0 && self.playAlphabetCounter < 5 {
+                                                    
+                                                    self.userLetterOne = self.alphabetSix[rowSix]
+                                                    
+                                                    //Add play to counter
+                                                    self.playAlphabetCounter += 1
+                                                    
+                                                } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
+                                                    
+                                                    self.userLetterTwo = self.alphabetSix[rowSix]
+                                                    
+                                                    //Add play to counter
+                                                    self.playAlphabetCounter += 1
+                                                    
+                                                } else if self.playAlphabetCounter == 2 && self.playAlphabetCounter < 5 {
+                                                    
+                                                    self.userLetterThree = self.alphabetSix[rowSix]
+                                                    
+                                                    //Add play to counter
+                                                    self.playAlphabetCounter += 1
+                                                    
+                                                    
+                                                } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
+                                                    
+                                                    self.userLetterFour = self.alphabetSix[rowSix]
+                                                    
+                                                    //Add to Play counter
+                                                    self.playAlphabetCounter += 1
+                                                    
+                                                    
+                                                }
+                                        }
+                                        
                                     }
                                     
                                 }
@@ -287,6 +512,23 @@ struct fourLetter: View {
                                 if stateOfAllUserInputs {
                                     
                                     Text(checkWord(inWord: self.collectAllUserInputs))
+                                    
+                                }
+                                
+                                Spacer().frame(height:5)
+                                VStack {
+                                Text("Word(s) Played")
+                                    .foregroundColor(Color.white)
+                                      Spacer().frame(height:5)
+                                }
+            
+                            
+                                    
+                                ForEach(self.playedWords,id: \.self) { wordsPlayed in
+                                    
+                                    Text("\(wordsPlayed)")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 10))
                                     
                                 }
                         
