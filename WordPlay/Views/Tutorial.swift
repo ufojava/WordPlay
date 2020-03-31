@@ -121,19 +121,28 @@ struct GameHelp: View {
                                             
                                             //Check status of ToggleTwo
                                             if self.toggleImageTwo {
+                                                
+                                                withAnimation {
                                                 self.toggleImageTwo.toggle()
+                                                }
                                             }
                                             
                                             //Check status of ToggleThree
                                             if self.toggleImageThree {
                                                 
-                                                self.toggleImageThree.toggle()
+                                                withAnimation {
+                                                
+                                                    self.toggleImageThree.toggle()
+                                                }
                                             }
                                             
                                             //Check status of ToggleFour
                                             if self.toggleImageFour {
                                                 
-                                                self.toggleImageFour.toggle()
+                                                withAnimation {
+                                                
+                                                    self.toggleImageFour.toggle()
+                                                }
                                             }
                                                
                                                
@@ -172,20 +181,28 @@ struct GameHelp: View {
                                         
                                         //Check status of ToggleOne
                                         if self.toggleImageOne {
+                                        
+                                            withAnimation {
                                             
                                             self.toggleImageOne.toggle()
+                                            }
                                         }
                                         
                                         //Check status of ToggleThree
                                         if self.toggleImageThree {
                                             
-                                            self.toggleImageThree.toggle()
+                                            withAnimation {
+                                                self.toggleImageThree.toggle()
+                                            }
                                         }
                                         
                                         //Check status of ToggleFour
                                         if self.toggleImageFour {
                                             
-                                            self.toggleImageFour.toggle()
+                                            withAnimation {
+                                            
+                                                self.toggleImageFour.toggle()
+                                            }
                                         }
                                            
                                            
@@ -221,19 +238,26 @@ struct GameHelp: View {
                                     //Check status of ToggleOne
                                     if self.toggleImageOne {
                                         
-                                        self.toggleImageOne.toggle()
+                                        withAnimation {
+                                        
+                                            self.toggleImageOne.toggle()
+                                        }
                                     }
                                     
                                     //Check status of ToggleTwo
                                     if self.toggleImageTwo {
+                                        withAnimation {
                                         
-                                        self.toggleImageTwo.toggle()
+                                            self.toggleImageTwo.toggle()
+                                        }
                                     }
                                     
                                     //Check status of ToggleFour
                                     if self.toggleImageFour {
+                                        withAnimation {
                                         
-                                        self.toggleImageFour.toggle()
+                                            self.toggleImageFour.toggle()
+                                        }
                                     }
                                     
                             }
@@ -272,19 +296,25 @@ struct GameHelp: View {
                                     //Check Status One
                                     if self.toggleImageOne {
                                         
-                                        self.toggleImageOne.toggle()
+                                        withAnimation {
+                                            self.toggleImageOne.toggle()
+                                        }
                                     }
                                     
                                     //Check Status Two
                                     if self.toggleImageTwo {
                                         
-                                        self.toggleImageTwo.toggle()
+                                        withAnimation {
+                                            self.toggleImageTwo.toggle()
+                                        }
                                     }
                                     
                                     //Check Status three
                                     if self.toggleImageThree {
                                         
-                                        self.toggleImageThree.toggle()
+                                        withAnimation {
+                                            self.toggleImageThree.toggle()
+                                        }
                                     }
                                     
                                     
