@@ -74,9 +74,9 @@ struct ContentView: View {
                                     .background(Color.blue)
                                     .foregroundColor(Color.white)
                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
-                                    .animation(.easeIn)
+                                    
                                 
-                            }
+                            }.transition(.move(edge: .leading))
                                 
                             }//End Game Button
                             
@@ -89,7 +89,7 @@ struct ContentView: View {
                                     .background(Color.blue)
                                     .foregroundColor(Color.white)
                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
-                                    .animation(.easeIn)
+                                    .transition(.move(edge: .leading))
                                 
                             }//End turorial button
                             
@@ -103,7 +103,7 @@ struct ContentView: View {
                                     .background(Color.blue)
                                     .foregroundColor(Color.white)
                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
-                                    .animation(.easeIn)
+                                    .transition(.move(edge: .leading))
                             
                             }
                         }
