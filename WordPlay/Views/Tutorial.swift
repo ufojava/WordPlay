@@ -18,6 +18,14 @@ struct GameHelp: View {
     @State private var toggleImageThree = false
     @State private var toggleImageFour = false
     
+    //Animate each insructions
+    @State private var showIsntructionOne = false
+    @State private var showIsntructionTwo = false
+    @State private var showIsntructionThree = false
+    @State private var showIsntructionFour = false
+    
+    
+    
     
     var body: some View {
         
@@ -32,13 +40,62 @@ struct GameHelp: View {
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
                 
+                    .onAppear() {
+                        
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation {
+                        
+                        self.showIsntructionOne = true
+                            
+                        }
+                        
+                        }
+                        
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                            withAnimation {
+                            
+                            self.showIsntructionTwo = true
+                                
+                            }
+                        
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                            withAnimation {
+                            
+                            self.showIsntructionThree = true
+                                
+                            }
+                        
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+                            withAnimation {
+                            
+                            self.showIsntructionFour = true
+                                
+                            }
+                        
+                        }
+                        
+                        
+                        
+                }
+                
                 VStack {
                     
                     Text("Click on image to enlarge").foregroundColor(Color.white).font(.system(size: 15))
                     
                     VStack(alignment: .leading) {
+                        
+                        
+                        if self.showIsntructionOne {
                     
                             HStack {//Help One
+                                
+                                
                         
                                 Text("1").foregroundColor(Color.white)
                                     .frame(width: 40, height: 40)
@@ -53,9 +110,14 @@ struct GameHelp: View {
                                        .resizable()
                                        .frame(width:30,height: 75)
                                        .scaledToFill()
+                                    
+                                    
                                        
                                            .onTapGesture {
+                                            
+                                            withAnimation {
                                                self.toggleImageOne.toggle()
+                                            }
                                             
                                             //Check status of ToggleTwo
                                             if self.toggleImageTwo {
@@ -76,10 +138,16 @@ struct GameHelp: View {
                                                
                                                
                                     }
-                            }//End Guide One
+                                    
+                                
+                                }.transition(.move(edge: .leading))//End Guide One
                         
                         
-                    
+                        }//End of Instruction One
+                        
+                        
+                        
+                        if self.showIsntructionTwo {
                         
                         HStack {//Help Two
                             
@@ -96,7 +164,11 @@ struct GameHelp: View {
                                    .scaledToFill()
                                    
                                        .onTapGesture {
+                                        
+                                        withAnimation {
+                                            
                                            self.toggleImageTwo.toggle()
+                                        }
                                         
                                         //Check status of ToggleOne
                                         if self.toggleImageOne {
@@ -119,8 +191,12 @@ struct GameHelp: View {
                                            
                                 }//End of guide two
                             
-                        }
+                        }.transition(.move(edge: .leading))
                         
+                        }//End on Instruction Two
+                        
+                        
+                        if self.showIsntructionThree {
                         
                         HStack {
                             
@@ -138,8 +214,10 @@ struct GameHelp: View {
                                     .frame(width:30,height: 75)
                                 
                                 .onTapGesture {
-                                    self.toggleImageThree.toggle()
                                     
+                                    withAnimation {
+                                        self.toggleImageThree.toggle()
+                                    }
                                     //Check status of ToggleOne
                                     if self.toggleImageOne {
                                         
@@ -162,9 +240,12 @@ struct GameHelp: View {
                                 
                             
                             
+                        }.transition(.move(edge: .leading))//End HStack for guide three
                             
-                            
-                        }//End HStack for guide three
+                        }//End of Instruction three
+                        
+                        
+                        if self.showIsntructionFour {
                         
                         HStack {
                             
@@ -183,8 +264,11 @@ struct GameHelp: View {
                                 .frame(width:30,height: 75)
                             
                                 .onTapGesture {
-                                    self.toggleImageFour.toggle()
                                     
+                                    withAnimation {
+                                        self.toggleImageFour.toggle()
+                                        
+                                    }
                                     //Check Status One
                                     if self.toggleImageOne {
                                         
@@ -208,10 +292,10 @@ struct GameHelp: View {
                             }
                             
                             
-                        }
+                        }.transition(.move(edge: .leading))//End of HStack gude four
                         
                         
-                        
+                        }//End on instruction Four
                         
                         
                     
@@ -221,24 +305,25 @@ struct GameHelp: View {
                     if self.toggleImageOne {
                         
                         
-                        ImageSize(userImage: "Help_SelectGAme")
+                        ImageSize(userImage: "Help_SelectGAme").transition(.move(edge: .leading))
+                            
                         
                     }
                     
                     if self.toggleImageTwo {
                     
                         
-                        ImageSize(userImage: "Help_GameInstructions")
+                        ImageSize(userImage: "Help_GameInstructions").transition(.move(edge: .leading))
                     }
                     
                     if self.toggleImageThree {
                         
-                        ImageSize(userImage: "Help_New_Word")
+                        ImageSize(userImage: "Help_New_Word").transition(.move(edge: .leading))
                     }
                     
                     if self.toggleImageFour {
                         
-                        ImageSize(userImage: "Help_Word_Memorised")
+                        ImageSize(userImage: "Help_Word_Memorised").transition(.move(edge: .leading))
                     }
                     
                     
