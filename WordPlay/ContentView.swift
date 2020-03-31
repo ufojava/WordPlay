@@ -80,16 +80,26 @@ struct ContentView: View {
                                 
                             }//End Game Button
                             
-                            if showTutorialButton {
-                            
                             Spacer().frame(height:10)
                             
-                                Text("Tutorial").font(.custom("Noteworthy", size: 25))
+                            if showTutorialButton {
+                                
+                                NavigationLink(destination: GameHelp()) {
+                                    
+                                    Text("Tutorial").font(.custom("Noteworthy", size: 25))
                                     .frame(width:150,height: 50)
                                     .background(Color.blue)
                                     .foregroundColor(Color.white)
                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
-                                    .transition(.move(edge: .leading))
+                                    
+                                    
+                                    
+                                    
+                                }.transition(.move(edge: .leading))
+                            
+                            
+                            
+                                
                                 
                             }//End turorial button
                             
