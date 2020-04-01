@@ -77,8 +77,20 @@ struct fourLetter: View {
     //Letter Selector Counter
     @State private var playAlphabetCounter = 0
     
+    //Game Timer
+    @State private var gameTimeLimit = 3
+    @State private var gameTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    
+    //Scoring
+    @State private var correctBaseScore = 20
+    
+    
     //Played words
-    @State private var playedWords: [String] = []
+    @State private var playedWordsOne: [String] = []
+    @State private var playedWordsTwo: [String] = []
+    @State private var playedWordsThree: [String] = []
+    
+
     
     
     
@@ -126,17 +138,23 @@ struct fourLetter: View {
                         .scaledToFill()
                         .edgesIgnoringSafeArea(.all)
             
-                    
+                                        
             
                             VStack {
-                                
+                                      
+                                VStack {
+                                    
+                                    Text("Tile Rack").font(.system(size: 25))
+                                    Spacer().frame(height:5)
                                 
                                 ZStack {
+                                            
                                     
                                         Rectangle()
                                             .frame(width:400,height:80)
                                             .foregroundColor(Color.init(red: 0.3, green: 0.4, blue: 0.4))
                                             .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.black,lineWidth: 1))
+                                    
                             
                             
                                     HStack {
@@ -164,8 +182,15 @@ struct fourLetter: View {
                                             .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3)).padding()
                                         
                                         
+                        
+                                        
+                                        
                                 }.padding()
+                                    
+                                    
                                 
+                                }//End of ZStack
+                                    
                                 }
                                 HStack {
                                 
@@ -174,8 +199,18 @@ struct fourLetter: View {
                                         
                                         self.stateOfAllUserInputs.toggle()
                                         self.collectAllUserInputs = self.userLetterOne + self.userLetterTwo + self.userLetterThree + self.userLetterFour
-                                        self.playedWords.append(self.collectAllUserInputs)
                                         
+                                        if self.playedWordsOne.capacity <= 10 {
+                                        self.playedWordsOne.append(self.collectAllUserInputs)
+                                            
+                                        } else if self.playedWordsTwo.capacity <= 10 {
+                                            
+                                            self.playedWordsTwo.append(self.collectAllUserInputs)
+                                            
+                                        } else {
+                                            
+                                            self.playedWordsThree.append(self.collectAllUserInputs)
+                                        }
                                         
                                         //Clear Screen
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -194,15 +229,41 @@ struct fourLetter: View {
                                         Text("Play Word").foregroundColor(Color.white)
                                             .frame(width:100,height: 30)
                                             .background(Color.blue)
-                                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3))
                                         
                                         
                                         
                                     }
                                     
-                                  
+                                  //Countdown Timer
+                                    Text("Timer: \(self.gameTimeLimit)").foregroundColor(Color.white)
+                                    .frame(width:100,height: 30)
+                                    .background(Color.red)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3))
                                     
-                                }
+                                        .onReceive(self.gameTimer) { time in
+                                            
+                                            if self.gameTimeLimit == 0 {
+                                                
+                                                self.gameTimer.upstream.connect().cancel() //Stop Game Timer
+                                                
+                                            } else {
+                                                
+                                                self.gameTimeLimit -= 1
+                                            }
+                                            
+                                            
+                                            
+                                    }//End of Counter Timer
+                                    
+                                    //Score
+                                    Text("Score:").foregroundColor(Color.white)
+                                    .frame(width:100,height: 30)
+                                    .background(Color.green)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3))
+                                    
+                                    
+                                }//End of HStack
                                 
                                 Spacer().frame(height:40)
                                 
@@ -256,7 +317,16 @@ struct fourLetter: View {
                                                         //Shuffle Row One
                                                         .onReceive(self.shuffleAlphabetTimer) {time in
                                                             
-                                                            self.alphabetOne.shuffle()
+                                                            if self.gameTimeLimit == 0 {
+                                                            
+                                                               self.shuffleAlphabetTimer.upstream.connect().cancel() //Stop aplhabet timer
+                                                            
+                                                            } else {
+                                                                
+                                                                self.alphabetOne.shuffle()
+                                                                
+                                                            }
+                                                            
                                                             
                                                     }
                                                 
@@ -543,29 +613,64 @@ struct fourLetter: View {
                                     
                                 }
                                 
+                                /*
                                 if stateOfAllUserInputs {
                                     
                                     Text(checkWord(inWord: self.collectAllUserInputs))
                                     
                                 }
-                                
+                                */
                                 Spacer().frame(height:5)
                                 VStack {
                                 Text("Word(s) Played")
                                     .foregroundColor(Color.white)
                                       Spacer().frame(height:5)
                                 }
+                                
+                                VStack {//list Play Words
             
-                            
+                                HStack {
                                     
-                                ForEach(self.playedWords,id: \.self) { wordsPlayed in
+                                  
+                                    
+                                ForEach(self.playedWordsOne,id: \.self) { wordsPlayed in
                                     
                                     Text("\(wordsPlayed)")
                                         .foregroundColor(Color.white)
                                         .font(.system(size: 10))
                                     
                                 }
-                        
+                                    
+                                }//End of HStack for words played
+                                
+                                HStack {
+                                   
+                                ForEach(self.playedWordsTwo,id: \.self) { wordsPlayed in
+                                    
+                                    Text("\(wordsPlayed)")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 10))
+                                    
+                                }
+                                 
+                                }//End of HStack Playword Two
+                                    
+                                HStack {
+                                   
+                                ForEach(self.playedWordsThree,id: \.self) { wordsPlayed in
+                                    
+                                    Text("\(wordsPlayed)")
+                                        .foregroundColor(Color.white)
+                                        .font(.system(size: 10))
+                                    
+                                }
+                                 
+                                }//End of HStack Playword Three
+                                    
+                                    
+                                    
+                                    
+                                }//End of VStack
                             
                             Spacer()
                         
