@@ -63,12 +63,16 @@ struct fourLetter: View {
     
     
     //Alphabets
-    @State private var alphabetOne = ["A","B","Z","X","Y"]
-    @State private var alphabetTwo = ["C","D","P","O","K"]
-    @State private var alphabetThree = ["T","W","N","F","I"]
-    @State private var alphabetFour = ["L","S","U","H","E"]
-    @State private var alphabetFive = ["G","Q","R","J","V"]
+    @State private var alphabetOne = ["A","B","Z","X","Y"].shuffled()
+    @State private var alphabetTwo = ["C","D","P","O","K"].shuffled()
+    @State private var alphabetThree = ["T","W","N","F","I"].shuffled()
+    @State private var alphabetFour = ["L","S","U","H","E"].shuffled()
+    @State private var alphabetFive = ["G","Q","R","J","V"].shuffled()
     @State private var alphabetSix = ["F"]
+    
+    
+    //Timer for alphabets
+    @State private var shuffleAlphabetTimer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     
     //Letter Selector Counter
     @State private var playAlphabetCounter = 0
@@ -247,6 +251,13 @@ struct fourLetter: View {
                                                                 
                                                                 
                                                             }
+                                                    }//End on OnTapGesture
+                                                        
+                                                        //Shuffle Row One
+                                                        .onReceive(self.shuffleAlphabetTimer) {time in
+                                                            
+                                                            self.alphabetOne.shuffle()
+                                                            
                                                     }
                                                 
                                                         
@@ -299,6 +310,12 @@ struct fourLetter: View {
                                                         
                                                         
                                                     }
+                                            }//End on Ontap Geesture
+                                                
+                                                //Shuffle Row two
+                                                .onReceive(self.shuffleAlphabetTimer) {time in
+                                                    
+                                                    self.alphabetTwo.shuffle()
                                             }
                                             
                                             
@@ -349,6 +366,12 @@ struct fourLetter: View {
                                                         
                                                     }
                                                     
+                                            }//End onTap Gesture
+                                                
+                                                //Shuffle Row three
+                                                .onReceive(self.shuffleAlphabetTimer) { time in
+                                                    
+                                                    self.alphabetThree.shuffle()
                                             }
                                             
                                         }
@@ -400,8 +423,13 @@ struct fourLetter: View {
                                                         
                                                         
                                                     }
+                                            }//End of OntapGetsure Row four
+                                                
+                                                //Shuffle Row four
+                                                .onReceive(self.shuffleAlphabetTimer) { time in
+                                                    
+                                                    self.alphabetFour.shuffle()
                                             }
-                                            
                                             
                                         }
                                         
@@ -449,6 +477,12 @@ struct fourLetter: View {
                                                         
                                                         
                                                     }
+                                            }//End of OnTapGesture
+                                                
+                                                //Shuffle Row five
+                                                .onReceive(self.shuffleAlphabetTimer) { time in
+                                                    
+                                                    self.alphabetFive.shuffle()
                                             }
                                             
                                             
