@@ -82,11 +82,13 @@ struct fourLetter: View {
     @State private var gameTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
     
     //Scoring
-    @State private var correctBaseScore = 20
+    @State private var correctBaseScore = 0
+    @State private var correctWordCounter = 0
+   
     
     
     //Played words
-    @State private var playedWordsOne: [String] = []
+    @State private  var playedWordsOne: [String] = []
     @State private var playedWordsTwo: [String] = []
     @State private var playedWordsThree: [String] = []
     
@@ -97,28 +99,61 @@ struct fourLetter: View {
     
     
     //Function to check word
-    func checkWord(inWord: String) -> String{
+    func checkWord(inWord: String) {
         
-        var dictionaryCheck = ""
+   
         
         let srchRecord = allWords.dataStructure.filter {$0.word == inWord}
+        let memoryArrayOne = self.playedWordsOne.contains(inWord) //USE CAPACITY
         
-        if srchRecord.indices.contains(0) {
+        
+        
+        if srchRecord.indices.contains(0)  {
             
-            dictionaryCheck = "Records found"
+            if memoryArrayOne {
+             
+                return
+            } else {
+            
+            self.correctBaseScore += 20
+            self.correctWordCounter += 1
             print(srchRecord[0])
-        } else {
-            
-            dictionaryCheck = "No Record Found"
-    
-            
+        
+        
+                    //Add Bonus score for 3 minites
+                    if self.correctWordCounter == 5 && self.gameTimeLimit == 3 {
+                        
+                        self.correctBaseScore += 50 //Add 50 Bonus Points
+                        
+                    } else if self.correctWordCounter == 10 && self.gameTimeLimit == 3 {
+                        
+                        self.correctBaseScore += 100 //Add 100 Bonus Points
+                        
+                        
+                    } else if self.correctWordCounter == 15 && self.gameTimeLimit == 3 {
+                        
+                        self.correctBaseScore += 250 //Add 250 Bonus Points
+                        
+                        //Add bonus fo 2 Mins
+                    } else if self.correctWordCounter == 5 && self.gameTimeLimit == 2 && self.correctBaseScore <= 100 {
+                        
+                        self.correctBaseScore += 10 //Add 10 points
+                        
+                    } else if self.correctWordCounter == 10 && self.gameTimeLimit == 2  && self.correctBaseScore <= 250 {
+                        
+                        self.correctBaseScore += 10 //Add 10 points
+                        
+                    } else if self.correctWordCounter == 15 && self.gameTimeLimit == 2 && self.correctBaseScore <= 250{
+                        
+                        self.correctBaseScore += 5 //Add 10 points
+                        
+                    }
+            }
         }
-            
         
-    return dictionaryCheck
-        
-        
-    }
+    }//end of Check word
+    
+   
     
 
   
@@ -199,18 +234,9 @@ struct fourLetter: View {
                                         
                                         self.stateOfAllUserInputs.toggle()
                                         self.collectAllUserInputs = self.userLetterOne + self.userLetterTwo + self.userLetterThree + self.userLetterFour
-                                        
-                                        if self.playedWordsOne.capacity <= 10 {
-                                        self.playedWordsOne.append(self.collectAllUserInputs)
-                                            
-                                        } else if self.playedWordsTwo.capacity <= 10 {
-                                            
-                                            self.playedWordsTwo.append(self.collectAllUserInputs)
-                                            
-                                        } else {
-                                            
-                                            self.playedWordsThree.append(self.collectAllUserInputs)
-                                        }
+                                   
+                                        //Process word input
+                                        self.checkWord(inWord: self.collectAllUserInputs)
                                         
                                         //Clear Screen
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -224,6 +250,25 @@ struct fourLetter: View {
                                         }
                                         
                                         
+                                        //Append entry into array
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                            
+                                            if self.playedWordsOne.capacity <= 10 {
+                                                self.playedWordsOne.append(self.collectAllUserInputs)
+                                                
+                                            } else if self.playedWordsTwo.capacity <= 10 {
+                                                
+                                                self.playedWordsTwo.append(self.collectAllUserInputs)
+                                                
+                                            } else {
+                                                
+                                                self.playedWordsThree.append(self.collectAllUserInputs)
+                                            }
+                                            
+                                            
+                                        }
+                                        
+                                        
                                     }) {
                                         
                                         Text("Play Word").foregroundColor(Color.white)
@@ -234,6 +279,8 @@ struct fourLetter: View {
                                         
                                         
                                     }
+                                    
+                                
                                     
                                   //Countdown Timer
                                     Text("Timer: \(self.gameTimeLimit)").foregroundColor(Color.white)
@@ -257,7 +304,7 @@ struct fourLetter: View {
                                     }//End of Counter Timer
                                     
                                     //Score
-                                    Text("Score:").foregroundColor(Color.white)
+                                    Text("Score: \(self.correctBaseScore)").foregroundColor(Color.white)
                                     .frame(width:100,height: 30)
                                     .background(Color.green)
                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3))
@@ -613,13 +660,9 @@ struct fourLetter: View {
                                     
                                 }
                                 
-                                /*
-                                if stateOfAllUserInputs {
-                                    
-                                    Text(checkWord(inWord: self.collectAllUserInputs))
-                                    
-                                }
-                                */
+                            
+        
+                             
                                 Spacer().frame(height:5)
                                 VStack {
                                 Text("Word(s) Played")
