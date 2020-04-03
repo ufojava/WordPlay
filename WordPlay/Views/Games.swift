@@ -108,7 +108,7 @@ struct fourLetter: View {
         
         
         
-        if srchRecord.indices.contains(0)  {
+        if srchRecord.indices.contains(0) && self.gameTimeLimit != 0 {
             
             if memoryArrayOne {
              
@@ -121,33 +121,25 @@ struct fourLetter: View {
         
         
                     //Add Bonus score for 3 minites
-                    if self.correctWordCounter == 5 && self.gameTimeLimit == 3 {
+                if (self.correctWordCounter >= 5 && self.correctWordCounter <= 9) && self.gameTimeLimit == 3  {
                         
-                        self.correctBaseScore += 50 //Add 50 Bonus Points
+                        self.correctBaseScore += 100 //Add 50 Bonus Points
                         
-                    } else if self.correctWordCounter == 10 && self.gameTimeLimit == 3 {
-                        
-                        self.correctBaseScore += 100 //Add 100 Bonus Points
-                        
-                        
-                    } else if self.correctWordCounter == 15 && self.gameTimeLimit == 3 {
+                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit == 3 {
                         
                         self.correctBaseScore += 250 //Add 250 Bonus Points
                         
+                        
                         //Add bonus fo 2 Mins
-                    } else if self.correctWordCounter == 5 && self.gameTimeLimit == 2 && self.correctBaseScore <= 100 {
+                } else if (self.correctWordCounter >= 5 && self.correctWordCounter <= 9) && self.gameTimeLimit == 2  {
                         
-                        self.correctBaseScore += 10 //Add 10 points
+                        self.correctBaseScore += 30 //Add 30 points
                         
-                    } else if self.correctWordCounter == 10 && self.gameTimeLimit == 2  && self.correctBaseScore <= 250 {
+                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit == 2 {
                         
-                        self.correctBaseScore += 10 //Add 10 points
+                        self.correctBaseScore += 50 //Add 50 points
                         
-                    } else if self.correctWordCounter == 15 && self.gameTimeLimit == 2 && self.correctBaseScore <= 250{
-                        
-                        self.correctBaseScore += 5 //Add 10 points
-                        
-                    }
+                    } 
             }
         }
         
