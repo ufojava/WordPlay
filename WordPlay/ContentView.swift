@@ -107,14 +107,16 @@ struct ContentView: View {
                             Spacer().frame(height:10)
                             
                             if showDictionaryButton {
+                                
+                                NavigationLink(destination: GameDictionary()) {
                             
                                 Text("Dictionary").font(.custom("Noteworthy", size: 25))
                                     .frame(width:150,height: 50)
                                     .background(Color.blue)
                                     .foregroundColor(Color.white)
                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
-                                    .transition(.move(edge: .leading))
-                            
+                                    
+                                }.transition(.move(edge: .leading))
                             }
                         }
             }

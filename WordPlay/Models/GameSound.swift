@@ -37,7 +37,7 @@ func gameSynthSpeechFemale(word:String) {
     
     let femaleWordSpeek = AVSpeechUtterance(string: word)
     femaleWordSpeek.voice = AVSpeechSynthesisVoice(language: "en-US")
-    femaleWordSpeek.rate = 0.5
+    femaleWordSpeek.rate = 0.4
     
     //Pass the Female speek to the synthersizer
     let synthesizer = AVSpeechSynthesizer()

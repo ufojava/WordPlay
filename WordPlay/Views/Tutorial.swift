@@ -43,17 +43,22 @@ struct GameHelp: View {
                     .onAppear() {
                         
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                            
+                            gameSynthSpeechFemale(word: "Select Play Game to begin. Your aim is to create as many four letter words within the 3 mins. Tile rack must be clear before forming new words")
                         withAnimation {
                         
-                        self.showIsntructionOne = true
+                                self.showIsntructionOne = true
+                                    
+                                }
+                        
+                        }
+                        
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
                             
-                        }
-                        
-                        }
-                        
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                            gameSynthSpeechFemale(word: "The letters are shuffled every few minutes, so take care when forming your word")
+                            
                             withAnimation {
                             
                             self.showIsntructionTwo = true
@@ -62,7 +67,9 @@ struct GameHelp: View {
                         
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 27) {
+                            
+                            gameSynthSpeechFemale(word: "Previous words cannot be replayed. Words played will be displayed as you play. If you replay, points will be deducted")
                             withAnimation {
                             
                             self.showIsntructionThree = true
@@ -71,7 +78,9 @@ struct GameHelp: View {
                         
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 35) {
+                            
+                            gameSynthSpeechFemale(word: "You can earn between 100 and 250 points on the number of words formed within 3 and 2 minutes. Now familiarise yourself with the play screen clicking on the images. Good luck")
                             withAnimation {
                             
                             self.showIsntructionFour = true
@@ -86,11 +95,23 @@ struct GameHelp: View {
                 
                 VStack {
                     
-                    Text("Click on image to enlarge").foregroundColor(Color.white).font(.system(size: 15))
+                    Text(" Game Tutorial")
+                        .onAppear() {
+                            
+                            gameSynthSpeechFemale(word: "Welcome to the tutorial.")
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                
+                                gameSynthSpeechFemale(word: "You will be playing against the clock of 3 mins. Click on image for enlarged view")
+                            }
+                            
+                            
+                          
+                    }
                     
                     VStack(alignment: .leading) {
                         
-                        
+                    
                         if self.showIsntructionOne {
                     
                             HStack {//Help One

@@ -16,10 +16,10 @@ struct GameDictionary: View {
     var body: some View {
         
         
-        NavigationView {//Temp Navigation View
+        //NavigationView {//Temp Navigation View
         
         GameDicList()
-    }
+   // }
 }
 }
 
@@ -49,8 +49,9 @@ struct GameDicList: View {
     @State private var selectedAlphabet = 0
     
     @State private var getList = false
+   
     
-    //Perform filter of array
+   
     
     
     
@@ -58,34 +59,21 @@ struct GameDicList: View {
     func letterSearch(inLetter:String) -> some View {
         
         
-        
-   
-        
     //Perform filter of array
         let srchRecord = fourLetterWords.dataStructure.filter {$0.word.hasPrefix(inLetter)}
-      /*
-        if srchRecord.indices.contains(0) {
-            
-            print("Record Found")
-            print(srchRecord[0])
- 
- */
+
             
     return        List(srchRecord,id: \.id) { word in
                 
                 Text("\(word.word)")
-            }
+                    .frame(width:380,height:30)
+                    .background(Color.gray)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+    }
             
         }
         
         
-        
-//return Text("Hello")
-        
-        
-    
-    
-    
     
     
      var body: some View {
@@ -94,14 +82,31 @@ struct GameDicList: View {
         VStack {
             
             
-            Text("Select Letter")
+            Text("4 Letter Dictionary")
+                .frame(width:380,height:30)
+                .background(Color.blue)
+                .foregroundColor(Color.white)
+                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+            
+                .onAppear() {
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    gameSynthSpeechFemale(word: "Welcome to the 4 letter dictionary. Select a letter and click get list")
+            }
+            }
+                
+           
             
             Picker(selection: $selectedAlphabet, label: Text("")) {
                 
                 ForEach(0..<alphabetList.count) {
                     
                     Text(self.alphabetList[$0])
+                
+                       
                 }
+                
+                
                 
               
             }
@@ -109,29 +114,40 @@ struct GameDicList: View {
                 .clipped()
                 .border(Color.green)
                 .padding()
+            
+           
              
             
-        Text("Selected Letter \(alphabetList[selectedAlphabet])")
-            
-            Spacer()
+            Spacer().frame(height:20)
             
             Button(action: {
                 
                 self.getList = true
+             
+                
+                gameSynthSpeechFemale(word: self.alphabetList[self.selectedAlphabet].lowercased())
                 
             }) {
                 
                 
                 
                 Text("Get List")
+                    .frame(width:90,height:30)
+                    .background(Color.blue)
+                    .foregroundColor(Color.white)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
                 
                 
             }
             
+             Spacer()
+            
+          
+            
             if getList {
                 
                 letterSearch(inLetter: alphabetList[selectedAlphabet])
-                Spacer()
+                
                 
             }
            
