@@ -18,6 +18,8 @@
 		0337F7DD242FAC220080D0E5 /* FourLetterDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0337F7DC242FAC220080D0E5 /* FourLetterDictionary.swift */; };
 		0337F7DF242FEF900080D0E5 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0337F7DE242FEF900080D0E5 /* DataLoader.swift */; };
 		037739E1243322F500D228E9 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037739E0243322F500D228E9 /* Tutorial.swift */; };
+		037739E324379ED000D228E9 /* GameSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037739E224379ED000D228E9 /* GameSound.swift */; };
+		037739E52438B9FE00D228E9 /* GameDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037739E42438B9FE00D228E9 /* GameDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		0337F7DC242FAC220080D0E5 /* FourLetterDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourLetterDictionary.swift; sourceTree = "<group>"; };
 		0337F7DE242FEF900080D0E5 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		037739E0243322F500D228E9 /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
+		037739E224379ED000D228E9 /* GameSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSound.swift; sourceTree = "<group>"; };
+		037739E42438B9FE00D228E9 /* GameDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 			children = (
 				0337F7DC242FAC220080D0E5 /* FourLetterDictionary.swift */,
 				0337F7DE242FEF900080D0E5 /* DataLoader.swift */,
+				037739E224379ED000D228E9 /* GameSound.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -102,6 +107,7 @@
 			children = (
 				0337F7D4242F7CC40080D0E5 /* Games.swift */,
 				037739E0243322F500D228E9 /* Tutorial.swift */,
+				037739E42438B9FE00D228E9 /* GameDictionary.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,8 +187,10 @@
 				0337F7BF242F7C380080D0E5 /* AppDelegate.swift in Sources */,
 				0337F7DD242FAC220080D0E5 /* FourLetterDictionary.swift in Sources */,
 				0337F7DF242FEF900080D0E5 /* DataLoader.swift in Sources */,
+				037739E52438B9FE00D228E9 /* GameDictionary.swift in Sources */,
 				0337F7C1242F7C380080D0E5 /* SceneDelegate.swift in Sources */,
 				0337F7C3242F7C380080D0E5 /* ContentView.swift in Sources */,
+				037739E324379ED000D228E9 /* GameSound.swift in Sources */,
 				037739E1243322F500D228E9 /* Tutorial.swift in Sources */,
 				0337F7D5242F7CC40080D0E5 /* Games.swift in Sources */,
 			);

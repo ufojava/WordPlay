@@ -68,7 +68,7 @@ struct fourLetter: View {
     @State private var alphabetThree = ["T","W","N","F","I"].shuffled()
     @State private var alphabetFour = ["L","S","U","H","E"].shuffled()
     @State private var alphabetFive = ["G","Q","R","J","V"].shuffled()
-    @State private var alphabetSix = ["F"]
+    @State private var alphabetSix = ["M"]
     
     
     //Timer for alphabets
@@ -104,43 +104,84 @@ struct fourLetter: View {
    
         
         let srchRecord = allWords.dataStructure.filter {$0.word == inWord}
-        let memoryArrayOne = self.playedWordsOne.contains(inWord) //USE CAPACITY
+        let memoryArrayOne = self.playedWordsOne.contains(inWord)
         
         
         
         if srchRecord.indices.contains(0) && self.gameTimeLimit != 0 {
             
             if memoryArrayOne {
+                gameSynthSpeech(word: "Word has been played")
              
                 return
             } else {
             
             self.correctBaseScore += 20
             self.correctWordCounter += 1
-            print(srchRecord[0])
+            
+            //Word played
+                gameSynthSpeechFemale(word: self.collectAllUserInputs)
+            //print(srchRecord[0])
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                //Pronounce score
+                gameSynthSpeech(word: "\(self.correctBaseScore)")
         
-        
+                }
                     //Add Bonus score for 3 minites
                 if (self.correctWordCounter >= 5 && self.correctWordCounter <= 9) && self.gameTimeLimit == 3  {
                         
-                        self.correctBaseScore += 100 //Add 50 Bonus Points
+
+                    //Add Bonus Point
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        self.correctBaseScore += 30 //Add 100 Bonus Points
+                        gameSynthSpeech(word: "30 Bonus Points Added")
+                    }
                         
-                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit == 3 {
+                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit == 3 && self.correctBaseScore <= 100 {
+                        
+                        
+                    
+                    //Add Bonus Point
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                         
                         self.correctBaseScore += 250 //Add 250 Bonus Points
+                        gameSynthSpeech(word: "250 Bonus Points Added")
+                    }
                         
                         
                         //Add bonus fo 2 Mins
-                } else if (self.correctWordCounter >= 5 && self.correctWordCounter <= 9) && self.gameTimeLimit == 2  {
+                } else if (self.correctWordCounter >= 5 && self.correctWordCounter <= 9) && self.gameTimeLimit == 2 && self.correctBaseScore <= 250 {
+                        
+                        
+                    
+                    //Add Bonus Point
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                         
                         self.correctBaseScore += 30 //Add 30 points
+                        gameSynthSpeech(word: "30 Bonus Points Added")
+                    }
                         
-                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit == 2 {
+                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit == 2  && self.correctBaseScore <= 250 {
+                        
+                        
+                    
+                    //Add Bonus Point
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                         
                         self.correctBaseScore += 50 //Add 50 points
+                        gameSynthSpeech(word: "50 Bonus Points Added")
+                    }
                         
                     } 
             }
+        } else if srchRecord.indices.contains(0) == false && self.gameTimeLimit != 0 {
+            
+            gameSynthSpeech(word: "Not a valid 4 letter word")
+            
+        } else {
+            
+            gameSynthSpeech(word: "Game is over. Your final score is \(self.correctBaseScore)")
         }
         
     }//end of Check word
@@ -286,6 +327,7 @@ struct fourLetter: View {
                                                 
                                                 self.gameTimer.upstream.connect().cancel() //Stop Game Timer
                                                 
+                                                
                                             } else {
                                                 
                                                 self.gameTimeLimit -= 1
@@ -324,12 +366,19 @@ struct fourLetter: View {
                                                                 
                                                                 self.userLetterOne = self.alphabetOne[rowOne]
                                                                 
+                                                                //Speak Letter
+                                                                gameSynthSpeechFemale(word: "\(self.userLetterOne.lowercased())")
+                                                                
                                                                 //Add play to counter
                                                                 self.playAlphabetCounter += 1
                                                                 
                                                             } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
                                                                 
                                                                 self.userLetterTwo = self.alphabetOne[rowOne]
+                                                                
+                                                                //Speak Letter
+                                                                gameSynthSpeechFemale(word: "\(self.userLetterTwo.lowercased())")
+                                                              
                                                                 
                                                                 //Add play to counter
                                                                 self.playAlphabetCounter += 1
@@ -338,6 +387,10 @@ struct fourLetter: View {
                                                                 
                                                                 self.userLetterThree = self.alphabetOne[rowOne]
                                                                 
+                                                                
+                                                                //Speak Letter
+                                                                gameSynthSpeechFemale(word: "\(self.userLetterThree.lowercased())")
+                                                                
                                                                 //Add play to counter
                                                                 self.playAlphabetCounter += 1
                                                                 
@@ -345,6 +398,10 @@ struct fourLetter: View {
                                                             } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
                                                                 
                                                                 self.userLetterFour = self.alphabetOne[rowOne]
+                                                                
+                                                                //Speak Letter
+                                                                gameSynthSpeechFemale(word: "\(self.userLetterFour.lowercased())")
+                                                          
                                                                 
                                                                 //Add to Play counter
                                                                 self.playAlphabetCounter += 1
@@ -392,12 +449,20 @@ struct fourLetter: View {
                                                         
                                                         self.userLetterOne = self.alphabetTwo[rowTwo]
                                                         
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterOne.lowercased())")
+                                                    
+                                                        
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
                                                         
                                                     } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
                                                         
                                                         self.userLetterTwo = self.alphabetTwo[rowTwo]
+                                                        
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterTwo.lowercased())")
                                                         
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
@@ -406,6 +471,10 @@ struct fourLetter: View {
                                                         
                                                         self.userLetterThree = self.alphabetTwo[rowTwo]
                                                         
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterThree.lowercased())")
+                                                        
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
                                                         
@@ -413,6 +482,10 @@ struct fourLetter: View {
                                                     } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
                                                         
                                                         self.userLetterFour = self.alphabetTwo[rowTwo]
+                                                        
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterFour.lowercased())")
                                                         
                                                         //Add to Play counter
                                                         self.playAlphabetCounter += 1
@@ -447,12 +520,20 @@ struct fourLetter: View {
                                                         
                                                         self.userLetterOne = self.alphabetThree[rowThree]
                                                         
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterOne.lowercased())")
+                                                        
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
                                                         
                                                     } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
                                                         
                                                         self.userLetterTwo = self.alphabetThree[rowThree]
+                                                        
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterTwo.lowercased())")
                                                         
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
@@ -461,6 +542,9 @@ struct fourLetter: View {
                                                         
                                                         self.userLetterThree = self.alphabetThree[rowThree]
                                                         
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterThree.lowercased())")
+                                                        
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
                                                         
@@ -468,6 +552,9 @@ struct fourLetter: View {
                                                     } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
                                                         
                                                         self.userLetterFour = self.alphabetThree[rowThree]
+                                                        
+                                                       //Speak Letter
+                                                       gameSynthSpeechFemale(word: "\(self.userLetterFour.lowercased())")
                                                         
                                                         //Add to Play counter
                                                         self.playAlphabetCounter += 1
@@ -505,12 +592,19 @@ struct fourLetter: View {
                                                         
                                                         self.userLetterOne = self.alphabetFour[rowFour]
                                                         
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterOne.lowercased())")
+                                                        
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
                                                         
                                                     } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
                                                         
                                                         self.userLetterTwo = self.alphabetFour[rowFour]
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterTwo.lowercased())")
                                                         
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
@@ -519,6 +613,9 @@ struct fourLetter: View {
                                                         
                                                         self.userLetterThree = self.alphabetFour[rowFour]
                                                         
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterThree.lowercased())")
+                                                        
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
                                                         
@@ -526,6 +623,9 @@ struct fourLetter: View {
                                                     } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
                                                         
                                                         self.userLetterFour = self.alphabetFour[rowFour]
+                                                        
+                                                       //Speak Letter
+                                                       gameSynthSpeechFemale(word: "\(self.userLetterFour.lowercased())")
                                                         
                                                         //Add to Play counter
                                                         self.playAlphabetCounter += 1
@@ -559,12 +659,19 @@ struct fourLetter: View {
                                                         
                                                         self.userLetterOne = self.alphabetFive[rowFive]
                                                         
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterOne.lowercased())")
+                                                        
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
                                                         
                                                     } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
                                                         
                                                         self.userLetterTwo = self.alphabetFive[rowFive]
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterTwo.lowercased())")
                                                         
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
@@ -573,6 +680,9 @@ struct fourLetter: View {
                                                         
                                                         self.userLetterThree = self.alphabetFive[rowFive]
                                                         
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterThree.lowercased())")
+                                                        
                                                         //Add play to counter
                                                         self.playAlphabetCounter += 1
                                                         
@@ -580,6 +690,9 @@ struct fourLetter: View {
                                                     } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
                                                         
                                                         self.userLetterFour = self.alphabetFive[rowFive]
+                                                        
+                                                        //Speak Letter
+                                                        gameSynthSpeechFemale(word: "\(self.userLetterFour.lowercased())")
                                                         
                                                         //Add to Play counter
                                                         self.playAlphabetCounter += 1
@@ -619,12 +732,20 @@ struct fourLetter: View {
                                                     
                                                     self.userLetterOne = self.alphabetSix[rowSix]
                                                     
+                                                    //Speak Letter
+                                                    gameSynthSpeechFemale(word: "\(self.userLetterOne.lowercased())")
+                                                    
+                                                
+                                                    
                                                     //Add play to counter
                                                     self.playAlphabetCounter += 1
                                                     
                                                 } else if self.playAlphabetCounter == 1 && self.playAlphabetCounter < 5 {
                                                     
                                                     self.userLetterTwo = self.alphabetSix[rowSix]
+                                                    
+                                                    //Speak Letter
+                                                    gameSynthSpeechFemale(word: "\(self.userLetterTwo.lowercased())")
                                                     
                                                     //Add play to counter
                                                     self.playAlphabetCounter += 1
@@ -633,6 +754,9 @@ struct fourLetter: View {
                                                     
                                                     self.userLetterThree = self.alphabetSix[rowSix]
                                                     
+                                                    //Speak Letter
+                                                    gameSynthSpeechFemale(word: "\(self.userLetterThree.lowercased())")
+                                                    
                                                     //Add play to counter
                                                     self.playAlphabetCounter += 1
                                                     
@@ -640,6 +764,9 @@ struct fourLetter: View {
                                                 } else if self.playAlphabetCounter == 3 && self.playAlphabetCounter < 5 {
                                                     
                                                     self.userLetterFour = self.alphabetSix[rowSix]
+                                                    
+                                                    //Speak Letter
+                                                    gameSynthSpeechFemale(word: "\(self.userLetterFour.lowercased())")
                                                     
                                                     //Add to Play counter
                                                     self.playAlphabetCounter += 1
