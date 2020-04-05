@@ -204,7 +204,7 @@ struct GameHelp: View {
                                             
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
                                                 
-                                               gameSynthSpeechFemale(word: "Allow the tile rack to clear before selecting letters")
+                                               gameSynthSpeechFemale(word: "Allow the tile rack to clear before selecting letters. Remember to tap icon to close image")
                                                 
                                             }
                                             
@@ -280,7 +280,7 @@ struct GameHelp: View {
                                         
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
                                             
-                                            gameSynthSpeechFemale(word: "Once you have selected four letters, click, play word")
+                                            gameSynthSpeechFemale(word: "Once you have selected four letters, click, play word. Remember to tap icon to close image")
                                         }
                                         
                                     }
@@ -350,7 +350,7 @@ struct GameHelp: View {
                                         
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                                             
-                                            gameSynthSpeechFemale(word: "If you replay a word, points will be deducted")
+                                            gameSynthSpeechFemale(word: "If you replay a word, points will be deducted. Remember to tap icon to close image")
                                             
                                         }
                                         
@@ -417,7 +417,7 @@ struct GameHelp: View {
                                     
                                     if self.startTalking {
                                         
-                                    gameSynthSpeechFemale(word: "You can earn between 100 and 250 points on the number of words formed within 3 and 2 minutes. Good luck")
+                                    gameSynthSpeechFemale(word: "You can earn between 100 and 250 points on the number of words formed within 3 and 2 minutes. Remember to tap icon to close image")
                                     }
                             }
                             
