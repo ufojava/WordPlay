@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     
     @State private var showGameGameButton = false
@@ -57,8 +58,11 @@ struct ContentView: View {
                                         }
                                         
                                     }
+                                  
                                     
                             }
+                            
+                          
                                 
                                 
                         

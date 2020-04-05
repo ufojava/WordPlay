@@ -24,6 +24,12 @@ struct GameHelp: View {
     @State private var showIsntructionThree = false
     @State private var showIsntructionFour = false
     
+    @State private var startTalking = false
+    
+    //Variables to control guilds
+    @State private var instructionsCounter = 0
+ 
+    
     
     
     
@@ -42,77 +48,117 @@ struct GameHelp: View {
                 
                     .onAppear() {
                         
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                            
-                            gameSynthSpeechFemale(word: "Select Play Game to begin. Your aim is to create as many four letter words within the 3 mins. Tile rack must be clear before forming new words")
+                       /*
                         withAnimation {
                         
                                 self.showIsntructionOne = true
                                     
-                                }
-                        
                         }
-                        
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
-                            
-                            gameSynthSpeechFemale(word: "The letters are shuffled every few minutes, so take care when forming your word")
-                            
-                            withAnimation {
+                        */
+                    
+                        withAnimation {
                             
                             self.showIsntructionTwo = true
                                 
-                            }
-                        
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 27) {
-                            
-                            gameSynthSpeechFemale(word: "Previous words cannot be replayed. Words played will be displayed as you play. If you replay, points will be deducted")
-                            withAnimation {
+                   
+                        withAnimation {
                             
                             self.showIsntructionThree = true
                                 
-                            }
-                        
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 35) {
-                            
-                            gameSynthSpeechFemale(word: "You can earn between 100 and 250 points on the number of words formed within 3 and 2 minutes. Now familiarise yourself with the play screen clicking on the images. Good luck")
-                            withAnimation {
+                        withAnimation {
                             
                             self.showIsntructionFour = true
                                 
+                        }
+                        
+                       
+                                            
+                }
+                
+                
+                
+                
+                VStack {
+                            
+                    HStack {
+                   
+                    
+                            Text("Tutorial: Click 👉🏾 ").foregroundColor(Color.white).font(.system(size: 25))
+                                .onAppear() {
+                                    
+                                    self.startTalking.toggle()
+                                    
+                                    if self.startTalking {
+                                        
+                                    gameSynthSpeechFemale(word: "Welcome to the tutorial.")
+                                    
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                        
+                                        gameSynthSpeechFemale(word: "Read the instructions below on how to use the guide")
+                                    }
+                                    
+                                    
+                                    
                             }
                         
+                        Button(action: {
+                            
+                            //Check the status of the counter
+                            if self.instructionsCounter >= 4 {
+                                
+                                self.instructionsCounter = 0
+                            }//End of instruction counter check
+                            
+                            //Add to counter
+                            
+                            if self.instructionsCounter >= 0 && self.instructionsCounter <= 3 {
+                                
+                            self.instructionsCounter += 1
+                            }
+                            
+                            if self.instructionsCounter == 1 {
+                                withAnimation {
+                                    
+                                    self.showIsntructionOne = true
+                                    
+                                }
+                                
+                            }
+                            
+                        }) {
+                            
+                            
+                            Text("Instruction: \(self.instructionsCounter)")
+                                .frame(width:150,height:50)
+                                .background(Color.blue)
+                                .foregroundColor(Color.white)
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
                         }
                         
                         
+                                  
+                    }//End of HStack
                         
-                }
-                
-                VStack {
-                    
-                    Text(" Game Tutorial")
-                        .onAppear() {
-                            
-                            gameSynthSpeechFemale(word: "Welcome to the tutorial.")
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                
-                                gameSynthSpeechFemale(word: "You will be playing against the clock of 3 mins. Click on image for enlarged view")
-                            }
-                            
-                            
-                          
-                    }
+                    Spacer().frame(height:10)
                     
                     VStack(alignment: .leading) {
                         
-                    
-                        if self.showIsntructionOne {
+                        VStack(alignment: .leading) {
+                            Text("1. Click on the instruction button")
+                            Text("2. Toggle Image to shrink and enlarge")
+                            Text("3. There are 4 instructions")
+                            Text("4. Click on text for voice assistance")
+                        
+                        }.foregroundColor(Color.white)
+                           
+                        
+                        
+                        if self.showIsntructionOne && self.instructionsCounter == 1 {
                     
                             HStack {//Help One
                                 
@@ -124,6 +170,15 @@ struct GameHelp: View {
                                     .overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.black,lineWidth: 1))
                                 
                                 Text("Select play game to begin").foregroundColor(Color.white)
+                                    .onTapGesture {
+                                        
+                                        //self.startTalking.toggle()
+                                        
+                                        if self.startTalking {
+                                        gameSynthSpeechFemale(word: "Select Play Game to begin. Your aim is to create as many four letter words within the 3 mins. Tile rack must be clear before forming new words")
+                                            
+                                        }
+                                }
                                 
                                 Spacer().frame(width:30)
                                 
@@ -177,7 +232,7 @@ struct GameHelp: View {
                         
                         
                         
-                        if self.showIsntructionTwo {
+                        if self.showIsntructionTwo && self.instructionsCounter == 2 {
                         
                         HStack {//Help Two
                             
@@ -187,6 +242,13 @@ struct GameHelp: View {
                                 .overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.black,lineWidth: 1))
                             
                             Text("Form a word from the colored").foregroundColor(Color.white)
+                                .onTapGesture {
+                                    if self.startTalking {
+                                        
+                                        gameSynthSpeechFemale(word: "The letters are shuffled every few minutes, so take care when forming your word")
+                                        
+                                    }
+                            }
                             
                             Image("Help_GameInstructions")
                                 .resizable()
@@ -234,7 +296,7 @@ struct GameHelp: View {
                         }//End on Instruction Two
                         
                         
-                        if self.showIsntructionThree {
+                        if self.showIsntructionThree && self.instructionsCounter == 3 {
                         
                         HStack {
                             
@@ -244,6 +306,11 @@ struct GameHelp: View {
                                 .overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.black,lineWidth: 1))
                             
                             Text("Previous words stored").foregroundColor(Color.white)
+                                .onTapGesture {
+                                    
+                                    gameSynthSpeechFemale(word: "Previous words cannot be replayed. Words played will be displayed as you play. If you replay, points will be deducted")
+                            }
+                                
                             Spacer().frame(width:68)
                                 
                                 
@@ -290,7 +357,7 @@ struct GameHelp: View {
                         }//End of Instruction three
                         
                         
-                        if self.showIsntructionFour {
+                        if self.showIsntructionFour && self.instructionsCounter == 4 {
                         
                         HStack {
                             
@@ -300,6 +367,9 @@ struct GameHelp: View {
                                 .overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.black,lineWidth: 1))
                             
                             Text("Memorised Word").foregroundColor(Color.white)
+                                .onTapGesture {
+                                    gameSynthSpeechFemale(word: "You can earn between 100 and 250 points on the number of words formed within 3 and 2 minutes. Now familiarise yourself with the play screen clicking on the images. Good luck")
+                            }
                             
                             //Create space to align
                             Spacer().frame(width:109)
@@ -412,7 +482,7 @@ struct ImageSize: View {
         
         Image(userImage)
             .resizable()
-            .frame(width:160,height: 320)
+            .frame(width:240,height: 400)
             .scaledToFill()
         
     }

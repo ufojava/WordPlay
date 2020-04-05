@@ -42,9 +42,13 @@ func gameSynthSpeechFemale(word:String) {
     //Pass the Female speek to the synthersizer
     let synthesizer = AVSpeechSynthesizer()
     synthesizer.speak(femaleWordSpeek)
+   
     
     
 }
+
+    
+
 
 
 
