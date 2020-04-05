@@ -121,8 +121,39 @@ struct ContentView: View {
                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
                                     
                                 }.transition(.move(edge: .leading))
+                            }//End of Dictionary
+                            
+                            Spacer().frame(height:30)
+                            
+                            //Decoration colour bar
+                            HStack {
+                                Rectangle()
+                                    .foregroundColor(Color.red)
+                                    .frame(width:50,height: 10)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                
+                                Rectangle()
+                                    .frame(width:50,height: 10)
+                                    .foregroundColor(Color.blue)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                
+                                Rectangle()
+                                    .frame(width:50,height: 10)
+                                    .foregroundColor(Color.green)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                
+                                Rectangle()
+                                    .frame(width:50,height: 10)
+                                    .foregroundColor(Color.yellow)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                
+                                Rectangle()
+                                    .frame(width:50,height: 10)
+                                    .foregroundColor(Color.purple)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
                             }
-                        }
+                            
+                        }//End of VStack
             }
         
         .navigationBarTitle(Text("Home 🏚"))

@@ -46,39 +46,7 @@ struct GameHelp: View {
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
                 
-                    .onAppear() {
-                        
-                       /*
-                        withAnimation {
-                        
-                                self.showIsntructionOne = true
-                                    
-                        }
-                        */
                     
-                        withAnimation {
-                            
-                            self.showIsntructionTwo = true
-                                
-                        }
-                        
-                   
-                        withAnimation {
-                            
-                            self.showIsntructionThree = true
-                                
-                        }
-                        
-                        withAnimation {
-                            
-                            self.showIsntructionFour = true
-                                
-                        }
-                        
-                       
-                                            
-                }
-                
                 
                 
                 
@@ -121,14 +89,67 @@ struct GameHelp: View {
                             self.instructionsCounter += 1
                             }
                             
+                            
+                            //Enable animaation for the four instructions
                             if self.instructionsCounter == 1 {
-                                withAnimation {
+                                
+                                //Check status of instruction four
+                                if self.showIsntructionFour {
                                     
-                                    self.showIsntructionOne = true
-                                    
+                                    self.showIsntructionFour.toggle()
                                 }
                                 
+                                withAnimation {
+                                    
+                                    
+                                    self.showIsntructionOne.toggle()
+                                    
+                                }
                             }
+                                
+                                if self.instructionsCounter == 2 {
+                                    
+                                    //Check status of instruction one
+                                    if self.showIsntructionOne {
+                                        
+                                        self.showIsntructionOne.toggle()
+                                    }
+                                    
+                                    withAnimation {
+                                        
+                                        
+                                        self.showIsntructionTwo.toggle()
+                                    }
+                                }
+                                
+                            if self.instructionsCounter == 3 {
+                                
+                                //Check status of instruction two
+                                if self.showIsntructionTwo {
+                                    
+                                    self.showIsntructionTwo.toggle()
+                                }
+                                
+                                withAnimation {
+                                    
+                                    self.showIsntructionThree.toggle()
+                                }
+                            }
+                            
+                            if self.instructionsCounter == 4 {
+                                
+                                //Check status of instruction three
+                                if self.showIsntructionThree {
+                                    
+                                    self.showIsntructionThree.toggle()
+                                }
+                                
+                                withAnimation {
+                                    
+                                    self.showIsntructionFour.toggle()
+                                }
+                            }
+                                
                             
                         }) {
                             
@@ -154,7 +175,11 @@ struct GameHelp: View {
                             Text("3. There are 4 instructions")
                             Text("4. Click on text for voice assistance")
                         
-                        }.foregroundColor(Color.white)
+                        }   .frame(width:400,height: 90)
+                            .foregroundColor(Color.white)
+                            .background(Color.green)
+                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.white,lineWidth: 2))
+                            
                            
                         
                         
@@ -175,7 +200,13 @@ struct GameHelp: View {
                                         //self.startTalking.toggle()
                                         
                                         if self.startTalking {
-                                        gameSynthSpeechFemale(word: "Select Play Game to begin. Your aim is to create as many four letter words within the 3 mins. Tile rack must be clear before forming new words")
+                                        gameSynthSpeechFemale(word: "Select Play Game to begin. Try and form as many 4 letter words within the 3 minutes allowed")
+                                            
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                                                
+                                               gameSynthSpeechFemale(word: "Allow the tile rack to clear before selecting letters")
+                                                
+                                            }
                                             
                                         }
                                 }
@@ -245,7 +276,12 @@ struct GameHelp: View {
                                 .onTapGesture {
                                     if self.startTalking {
                                         
-                                        gameSynthSpeechFemale(word: "The letters are shuffled every few minutes, so take care when forming your word")
+                                        gameSynthSpeechFemale(word: "The letters are shuffled every few seconds, so take care when forming your word")
+                                        
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                                            
+                                            gameSynthSpeechFemale(word: "Once you have selected four letters, click, play word")
+                                        }
                                         
                                     }
                             }
@@ -308,7 +344,17 @@ struct GameHelp: View {
                             Text("Previous words stored").foregroundColor(Color.white)
                                 .onTapGesture {
                                     
-                                    gameSynthSpeechFemale(word: "Previous words cannot be replayed. Words played will be displayed as you play. If you replay, points will be deducted")
+                                    if self.startTalking {
+                                    
+                                    gameSynthSpeechFemale(word: "Previous words cannot be replayed. Words played will be displayed as you play.")
+                                        
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                                            
+                                            gameSynthSpeechFemale(word: "If you replay a word, points will be deducted")
+                                            
+                                        }
+                                        
+                                    }
                             }
                                 
                             Spacer().frame(width:68)
@@ -368,7 +414,11 @@ struct GameHelp: View {
                             
                             Text("Memorised Word").foregroundColor(Color.white)
                                 .onTapGesture {
-                                    gameSynthSpeechFemale(word: "You can earn between 100 and 250 points on the number of words formed within 3 and 2 minutes. Now familiarise yourself with the play screen clicking on the images. Good luck")
+                                    
+                                    if self.startTalking {
+                                        
+                                    gameSynthSpeechFemale(word: "You can earn between 100 and 250 points on the number of words formed within 3 and 2 minutes. Good luck")
+                                    }
                             }
                             
                             //Create space to align
