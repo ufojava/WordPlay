@@ -14,6 +14,35 @@ import AVFoundation //Enable Media player and sound
 var gameAVPlayer: AVAudioPlayer?
 
 
+
+
+//Play Audo mp3 files
+func playAudioFile(sound:String,type:String) {
+    
+    //File location
+    if let filePath = Bundle.main.path(forResource: sound, ofType: type) {
+        
+       
+        do {
+            
+            gameAVPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: filePath))
+            
+            gameAVPlayer?.play()
+            
+            
+        } catch {
+            
+            print("File not found")
+        }
+        
+    }
+
+    
+}//End of Audio player
+
+
+
+
 //AV Speach
 func gameSynthSpeech(word:String) {
     
@@ -32,7 +61,7 @@ func gameSynthSpeech(word:String) {
 
 
 
-//Femal speech
+//Female speech
 func gameSynthSpeechFemale(word:String) {
     
     let femaleWordSpeek = AVSpeechUtterance(string: word)

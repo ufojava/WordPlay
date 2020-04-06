@@ -92,6 +92,24 @@ struct fourLetter: View {
     @State private var playedWordsTwo: [String] = []
     @State private var playedWordsThree: [String] = []
     
+    
+    //Palyer Progress
+    @State private var playMaxScore = 850 //Projected maximum score in one game
+    
+    @State private var playerHealthRed = false
+    @State private var playerRedOpacity = 0.0
+    @State private var playerRedCounter = 0
+    
+    @State private var playerHealthOrange = false
+    @State private var playerOrangeOpacity = 0.0
+    @State private var playerOrangeCounter = 0
+    
+    
+    
+    @State private var playerHealthGreen = false
+    @State private var playerGreenOpacity = 0.0
+    
+    
 
     
     
@@ -111,7 +129,10 @@ struct fourLetter: View {
         if srchRecord.indices.contains(0) && self.gameTimeLimit != 0 {
             
             if memoryArrayOne {
-                gameSynthSpeech(word: "Word has been played")
+                gameSynthSpeech(word: "Word has been played. 20 points deducted")
+                
+                //Deducct 20 points
+                self.correctBaseScore -= 20
              
                 return
             } else {
@@ -179,6 +200,13 @@ struct fourLetter: View {
             
             gameSynthSpeech(word: "Not a valid 4 letter word")
             
+            //Deduct 20 points
+            self.correctBaseScore -= 20
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                gameSynthSpeech(word: "20 points deducted")
+            }
+            
         } else {
             
             gameSynthSpeech(word: "Game is over. Your final score is \(self.correctBaseScore)")
@@ -187,7 +215,65 @@ struct fourLetter: View {
     }//end of Check word
     
    
-    
+    //Function to apply health to player
+    func playerHealth() {
+        
+        if self.correctBaseScore >= 50 && self.correctBaseScore <= 99 {
+            
+            self.playerRedOpacity = 1.0
+            
+            //Play health milestone
+            
+            if self.playerRedCounter == 0 {
+                
+            playAudioFile(sound: "50Points_Reached", type: "mp3")
+                
+                //Add to counter
+                self.playerRedCounter += 1
+            
+            //Encorage to attain 100 points
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                
+                playAudioFile(sound: "100_Points_AmberEncouragement", type: "mp3")
+                
+                
+                
+            }
+            }
+        }
+        
+        
+        if self.correctBaseScore >= 100 && self.correctBaseScore <= 399 {
+            
+            self.playerOrangeOpacity = 1.0
+            
+            //Play health milestone 100 reached
+            
+            if self.playerOrangeCounter == 0 {
+                
+                //Add to counter
+                self.playerOrangeCounter += 1
+                
+                
+            playAudioFile(sound: "100_Points_Amber_Reached", type: "mp3")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                
+                playAudioFile(sound: "400_Points_Green_Encorage", type: "mp3")
+                
+                
+            }
+            }
+        }
+        
+        if self.correctBaseScore >= 400 && self.correctBaseScore <= 850 {
+            
+            self.playerGreenOpacity = 1.0
+            
+            playAudioFile(sound: "400_Points_Reached", type: "mp3")
+        }
+        
+    }
 
   
     
@@ -206,13 +292,45 @@ struct fourLetter: View {
                         .scaledToFill()
                         .edgesIgnoringSafeArea(.all)
             
+                        .onAppear() {
+                        
+                            //Play audo encoraging 50 points
+                            playAudioFile(sound: "50Points_Tip", type: "mp3")
+                            
+                        }
+            
                                         
             
                             VStack {
                                       
                                 VStack {
                                     
-                                    Text("Tile Rack").font(.system(size: 25))
+                                    HStack {
+                                        
+                                        Text("Health Bar 🌡").font(.system(size: 20)).foregroundColor(Color.white)
+                                    
+                                    Rectangle()
+                                        .frame(width:50,height:10)
+                                        .foregroundColor(Color.red)
+                                        .opacity(self.playerRedOpacity)
+                                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                        
+                                        
+                                    Rectangle()
+                                        .frame(width:50,height:10)
+                                        .foregroundColor(Color.orange)
+                                        .opacity(self.playerOrangeOpacity)
+                                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                        
+                                        
+                                    Rectangle()
+                                        .frame(width:50,height:10)
+                                        .foregroundColor(Color.green)
+                                        .opacity(self.playerGreenOpacity)
+                                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                                        
+                                        
+                                    }
                                     Spacer().frame(height:5)
                                 
                                 ZStack {
@@ -270,6 +388,9 @@ struct fourLetter: View {
                                    
                                         //Process word input
                                         self.checkWord(inWord: self.collectAllUserInputs)
+                                        
+                                        //Process Player Health
+                                        self.playerHealth()
                                         
                                         //Clear Screen
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
