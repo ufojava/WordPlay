@@ -108,6 +108,7 @@ struct fourLetter: View {
     
     @State private var playerHealthGreen = false
     @State private var playerGreenOpacity = 0.0
+    @State private var playerGreenCounter = 0
     
     
 
@@ -270,7 +271,17 @@ struct fourLetter: View {
             
             self.playerGreenOpacity = 1.0
             
-            playAudioFile(sound: "400_Points_Reached", type: "mp3")
+            //Play heath milesone 400
+            
+            if self.playerGreenCounter == 1 {
+                
+                self.playerGreenCounter += 1
+                
+                
+                playAudioFile(sound: "400_Points_Reached", type: "mp3")
+            }
+            
+            
         }
         
     }
