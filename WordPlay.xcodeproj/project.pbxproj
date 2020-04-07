@@ -20,12 +20,10 @@
 		037739E1243322F500D228E9 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037739E0243322F500D228E9 /* Tutorial.swift */; };
 		037739E324379ED000D228E9 /* GameSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037739E224379ED000D228E9 /* GameSound.swift */; };
 		037739E52438B9FE00D228E9 /* GameDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037739E42438B9FE00D228E9 /* GameDictionary.swift */; };
-		037739EE243BBA7F00D228E9 /* 100_Points_Amber_Reached.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 037739E8243BBA7F00D228E9 /* 100_Points_Amber_Reached.mp3 */; };
-		037739F3243BE0FF00D228E9 /* 50Points_Tip.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 037739F2243BE0FF00D228E9 /* 50Points_Tip.mp3 */; };
-		037739F5243BE3AB00D228E9 /* 50Points_Reached.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 037739F4243BE3AA00D228E9 /* 50Points_Reached.mp3 */; };
-		037739F9243BE8B600D228E9 /* 100_Points_AmberEncouragement.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 037739F8243BE8B500D228E9 /* 100_Points_AmberEncouragement.mp3 */; };
-		037739FC243BEA2900D228E9 /* 400_Points_Green_Encorage.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 037739FA243BEA2900D228E9 /* 400_Points_Green_Encorage.mp3 */; };
-		037739FD243BEA2900D228E9 /* 400_Points_Reached.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 037739FB243BEA2900D228E9 /* 400_Points_Reached.mp3 */; };
+		03773A02243D093300D228E9 /* FourLetterHealthAmber.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 037739FE243D093200D228E9 /* FourLetterHealthAmber.mp3 */; };
+		03773A03243D093300D228E9 /* FourLetterHealthGreen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 037739FF243D093300D228E9 /* FourLetterHealthGreen.mp3 */; };
+		03773A04243D093300D228E9 /* FourLetterHealthRed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03773A00243D093300D228E9 /* FourLetterHealthRed.mp3 */; };
+		03773A07243D25E800D228E9 /* FourLetter10SecCountdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03773A06243D25E800D228E9 /* FourLetter10SecCountdown.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,12 +42,10 @@
 		037739E0243322F500D228E9 /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		037739E224379ED000D228E9 /* GameSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSound.swift; sourceTree = "<group>"; };
 		037739E42438B9FE00D228E9 /* GameDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDictionary.swift; sourceTree = "<group>"; };
-		037739E8243BBA7F00D228E9 /* 100_Points_Amber_Reached.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 100_Points_Amber_Reached.mp3; sourceTree = "<group>"; };
-		037739F2243BE0FF00D228E9 /* 50Points_Tip.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 50Points_Tip.mp3; sourceTree = "<group>"; };
-		037739F4243BE3AA00D228E9 /* 50Points_Reached.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 50Points_Reached.mp3; sourceTree = "<group>"; };
-		037739F8243BE8B500D228E9 /* 100_Points_AmberEncouragement.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 100_Points_AmberEncouragement.mp3; sourceTree = "<group>"; };
-		037739FA243BEA2900D228E9 /* 400_Points_Green_Encorage.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 400_Points_Green_Encorage.mp3; sourceTree = "<group>"; };
-		037739FB243BEA2900D228E9 /* 400_Points_Reached.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 400_Points_Reached.mp3; sourceTree = "<group>"; };
+		037739FE243D093200D228E9 /* FourLetterHealthAmber.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FourLetterHealthAmber.mp3; sourceTree = "<group>"; };
+		037739FF243D093300D228E9 /* FourLetterHealthGreen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FourLetterHealthGreen.mp3; sourceTree = "<group>"; };
+		03773A00243D093300D228E9 /* FourLetterHealthRed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FourLetterHealthRed.mp3; sourceTree = "<group>"; };
+		03773A06243D25E800D228E9 /* FourLetter10SecCountdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FourLetter10SecCountdown.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,12 +78,10 @@
 		0337F7BD242F7C380080D0E5 /* WordPlay */ = {
 			isa = PBXGroup;
 			children = (
-				037739F2243BE0FF00D228E9 /* 50Points_Tip.mp3 */,
-				037739E8243BBA7F00D228E9 /* 100_Points_Amber_Reached.mp3 */,
-				037739F4243BE3AA00D228E9 /* 50Points_Reached.mp3 */,
-				037739FA243BEA2900D228E9 /* 400_Points_Green_Encorage.mp3 */,
-				037739FB243BEA2900D228E9 /* 400_Points_Reached.mp3 */,
-				037739F8243BE8B500D228E9 /* 100_Points_AmberEncouragement.mp3 */,
+				03773A06243D25E800D228E9 /* FourLetter10SecCountdown.mp3 */,
+				037739FE243D093200D228E9 /* FourLetterHealthAmber.mp3 */,
+				037739FF243D093300D228E9 /* FourLetterHealthGreen.mp3 */,
+				03773A00243D093300D228E9 /* FourLetterHealthRed.mp3 */,
 				0337F7DA242FAA5B0080D0E5 /* 4LetterDictionary.json */,
 				0337F7D3242F7C6C0080D0E5 /* Views */,
 				0337F7D2242F7C560080D0E5 /* Models */,
@@ -190,14 +184,12 @@
 			files = (
 				0337F7DB242FAA5B0080D0E5 /* 4LetterDictionary.json in Resources */,
 				0337F7CB242F7C3B0080D0E5 /* LaunchScreen.storyboard in Resources */,
+				03773A04243D093300D228E9 /* FourLetterHealthRed.mp3 in Resources */,
+				03773A07243D25E800D228E9 /* FourLetter10SecCountdown.mp3 in Resources */,
+				03773A03243D093300D228E9 /* FourLetterHealthGreen.mp3 in Resources */,
 				0337F7C8242F7C3B0080D0E5 /* Preview Assets.xcassets in Resources */,
-				037739EE243BBA7F00D228E9 /* 100_Points_Amber_Reached.mp3 in Resources */,
 				0337F7C5242F7C3B0080D0E5 /* Assets.xcassets in Resources */,
-				037739F9243BE8B600D228E9 /* 100_Points_AmberEncouragement.mp3 in Resources */,
-				037739F5243BE3AB00D228E9 /* 50Points_Reached.mp3 in Resources */,
-				037739FD243BEA2900D228E9 /* 400_Points_Reached.mp3 in Resources */,
-				037739FC243BEA2900D228E9 /* 400_Points_Green_Encorage.mp3 in Resources */,
-				037739F3243BE0FF00D228E9 /* 50Points_Tip.mp3 in Resources */,
+				03773A02243D093300D228E9 /* FourLetterHealthAmber.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -78,8 +78,11 @@ struct fourLetter: View {
     @State private var playAlphabetCounter = 0
     
     //Game Timer
-    @State private var gameTimeLimit = 3
-    @State private var gameTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    @State private var gameTimeLimit = 180
+    @State private var gameTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var gameTenSeccounter = false
+    
+   
     
     //Scoring
     @State private var correctBaseScore = 0
@@ -219,6 +222,8 @@ struct fourLetter: View {
     //Function to apply health to player
     func playerHealth() {
         
+        
+        //Red attained
         if self.correctBaseScore >= 50 && self.correctBaseScore <= 99 {
             
             self.playerRedOpacity = 1.0
@@ -227,23 +232,17 @@ struct fourLetter: View {
             
             if self.playerRedCounter == 0 {
                 
-            playAudioFile(sound: "50Points_Reached", type: "mp3")
+            playAudioFile(sound: "FourLetterHealthRed", type: "mp3")
                 
                 //Add to counter
                 self.playerRedCounter += 1
             
-            //Encorage to attain 100 points
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                
-                playAudioFile(sound: "100_Points_AmberEncouragement", type: "mp3")
-                
-                
-                
-            }
+           
             }
         }
         
         
+        //Amber attanied
         if self.correctBaseScore >= 100 && self.correctBaseScore <= 399 {
             
             self.playerOrangeOpacity = 1.0
@@ -256,36 +255,41 @@ struct fourLetter: View {
                 self.playerOrangeCounter += 1
                 
                 
-            playAudioFile(sound: "100_Points_Amber_Reached", type: "mp3")
+            playAudioFile(sound: "FourLetterHealthAmber", type: "mp3")
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-                
-                playAudioFile(sound: "400_Points_Green_Encorage", type: "mp3")
-                
-                
-            }
             }
         }
         
+        
+        //Green attained
         if self.correctBaseScore >= 400 && self.correctBaseScore <= 850 {
             
             self.playerGreenOpacity = 1.0
             
             //Play heath milesone 400
             
-            if self.playerGreenCounter == 1 {
+            if self.playerGreenCounter == 0 {
                 
                 self.playerGreenCounter += 1
                 
                 
-                playAudioFile(sound: "400_Points_Reached", type: "mp3")
+                playAudioFile(sound: "FourLetterHealthGreen", type: "mp3")
             }
             
             
         }
         
     }
+    
 
+    func tenSecondCounter() {
+        
+        if self.gameTimeLimit > 0 && self.gameTimeLimit <= 10 {
+            
+            playAudioFile(sound: "FourLetter10SecCountdown", type: "mp3")
+        }
+        
+    }
   
     
 
@@ -303,14 +307,7 @@ struct fourLetter: View {
                         .scaledToFill()
                         .edgesIgnoringSafeArea(.all)
             
-                        .onAppear() {
-                        
-                            //Play audo encoraging 50 points
-                            playAudioFile(sound: "50Points_Tip", type: "mp3")
-                            
-                        }
-            
-                                        
+                       
             
                             VStack {
                                       
@@ -403,6 +400,11 @@ struct fourLetter: View {
                                         //Process Player Health
                                         self.playerHealth()
                                         
+                                        //Ten Second Counter
+                                        self.gameTenSeccounter = true
+                                        self.tenSecondCounter()
+                                        
+                                 
                                         //Clear Screen
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                             
@@ -444,6 +446,8 @@ struct fourLetter: View {
                                         
                                         
                                     }
+                                    
+                            
                                     
                                 
                                     
@@ -995,7 +999,6 @@ struct FormatTile: View {
         
         Text(alphabet)
             .frame(width:50,height:50)
-            //.background(Color.orange)
             .foregroundColor(Color.black)
             .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3))
         

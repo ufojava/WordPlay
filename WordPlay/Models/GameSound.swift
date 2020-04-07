@@ -30,6 +30,7 @@ func playAudioFile(sound:String,type:String) {
             gameAVPlayer?.play()
             
             
+            
         } catch {
             
             print("File not found")
@@ -39,6 +40,11 @@ func playAudioFile(sound:String,type:String) {
 
     
 }//End of Audio player
+
+
+
+
+    
 
 
 
