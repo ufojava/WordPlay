@@ -48,7 +48,7 @@ struct ContentView: View {
                                     }
                                     
                                     
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 12) {
                                     
                                         withAnimation {
                                             self.showGameGameButton = true
@@ -56,7 +56,7 @@ struct ContentView: View {
                                     }
                                     
                                     
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 16) {
                                     
                                         withAnimation {
                                             
@@ -64,7 +64,7 @@ struct ContentView: View {
                                         }
                                     
                                     }
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 20) {
                                     
                                         withAnimation {
                                             

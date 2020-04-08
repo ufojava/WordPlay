@@ -25,6 +25,7 @@
 		03773A04243D093300D228E9 /* FourLetterHealthRed.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03773A00243D093300D228E9 /* FourLetterHealthRed.mp3 */; };
 		03773A07243D25E800D228E9 /* FourLetter10SecCountdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03773A06243D25E800D228E9 /* FourLetter10SecCountdown.mp3 */; };
 		03773A09243D9DF800D228E9 /* 4LetterIntro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 03773A08243D9DF700D228E9 /* 4LetterIntro.mp3 */; };
+		03773A0B243E299000D228E9 /* ColourPallette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03773A0A243E299000D228E9 /* ColourPallette.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		03773A00243D093300D228E9 /* FourLetterHealthRed.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FourLetterHealthRed.mp3; sourceTree = "<group>"; };
 		03773A06243D25E800D228E9 /* FourLetter10SecCountdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FourLetter10SecCountdown.mp3; sourceTree = "<group>"; };
 		03773A08243D9DF700D228E9 /* 4LetterIntro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 4LetterIntro.mp3; sourceTree = "<group>"; };
+		03773A0A243E299000D228E9 /* ColourPallette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourPallette.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				0337F7D4242F7CC40080D0E5 /* Games.swift */,
 				037739E0243322F500D228E9 /* Tutorial.swift */,
 				037739E42438B9FE00D228E9 /* GameDictionary.swift */,
+				03773A0A243E299000D228E9 /* ColourPallette.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				0337F7C3242F7C380080D0E5 /* ContentView.swift in Sources */,
 				037739E324379ED000D228E9 /* GameSound.swift in Sources */,
 				037739E1243322F500D228E9 /* Tutorial.swift in Sources */,
+				03773A0B243E299000D228E9 /* ColourPallette.swift in Sources */,
 				0337F7D5242F7CC40080D0E5 /* Games.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

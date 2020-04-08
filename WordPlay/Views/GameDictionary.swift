@@ -63,57 +63,84 @@ struct GameDicList: View {
         let srchRecord = fourLetterWords.dataStructure.filter {$0.word.hasPrefix(inLetter)}
 
             
-    return        List(srchRecord,id: \.id) { word in
-                
-                Text("\(word.word)")
-                    .frame(width:380,height:30)
-                    .background(Color.gray)
-                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
-    }
-            
-        }
+        return List {
         
+        
+        ForEach(srchRecord,id: \.id) { word in
+            
+                VStack(alignment: .center, spacing: 0) {
+                    
+                    Text("\(word.word)").foregroundColor(Color.white)
+                            
+                            
+                        .frame(width:380,height:30)
+                        .background(Color.init(red: 0.5, green: 0.3, blue: 0.1))
+                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                    
+                              
+                    }.padding(.horizontal,40)
+                    
+                }
+          
+        }//End of List
+    }
         
     
     
      var body: some View {
         
+       
         
         VStack {
             
             
-            Text("4 Letter Dictionary")
-                .frame(width:380,height:30)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
             
-                .onAppear() {
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    gameSynthSpeechFemale(word: "Welcome to the 4 letter dictionary. Select a letter and click get list")
-            }
-            }
-                
-           
             
-            Picker(selection: $selectedAlphabet, label: Text("")) {
+            ZStack(alignment: .top) {
                 
-                ForEach(0..<alphabetList.count) {
-                    
-                    Text(self.alphabetList[$0])
+            
                 
-                       
-                }
+                Image("4LettersOtherScreen")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
                 
                 
+                VStack {
+            
+                            Text("4 Letter Dictionary")
+                                .frame(width:380,height:30)
+                                .background(Color.blue)
+                                .foregroundColor(Color.white)
+                                .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 2))
+                            
+                                .onAppear() {
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    gameSynthSpeechFemale(word: "Welcome to the 4 letter dictionary. Select a letter and click get list")
+                                }
+                            }
                 
-              
-            }
-                .frame(width:200)
-                .clipped()
-                .border(Color.green)
-                .padding()
+            Spacer().frame(height:20)
+            
+                            Picker(selection: $selectedAlphabet, label: Text("")) {
+                                
+                                ForEach(0..<alphabetList.count) {
+                                    
+                                    Text(self.alphabetList[$0])
+                                        .foregroundColor(Color.yellow)
+                                
+                                       
+                                }
+                                
+                                
+                                
+                              
+                            }
+                            .frame(width:200)
+                            .clipped()
+                            .border(Color.green)
+                            .padding()
             
            
              
@@ -150,8 +177,8 @@ struct GameDicList: View {
                 
                 
             }
-           
-          
+                }
+            }
         }
     }
 }
