@@ -15,6 +15,16 @@ struct ContentView: View {
     @State private var showTutorialButton = false
     @State private var showDictionaryButton = false
     
+    //Button Placeholders State
+    @State private var loadingGameButton = true
+    @State private var loadingTutorialButton = true
+    @State private var loadingDictionaryButton = true
+    
+    //Assigning State value
+    @State private var loadingGame = "Loading..."
+    @State private var loadingTutorial = "Loading..."
+    @State private var loadingDictionary = "Loading..."
+    
     //Intro Music Control
     @State private var playIntroMusic = false
     
@@ -48,10 +58,12 @@ struct ContentView: View {
                                     }
                                     
                                     
+                                    
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 12) {
                                     
                                         withAnimation {
                                             self.showGameGameButton = true
+                                            self.loadingGameButton = false
                                         }
                                     }
                                     
@@ -61,6 +73,7 @@ struct ContentView: View {
                                         withAnimation {
                                             
                                             self.showTutorialButton = true
+                                            self.loadingTutorialButton = false
                                         }
                                     
                                     }
@@ -69,6 +82,7 @@ struct ContentView: View {
                                         withAnimation {
                                             
                                             self.showDictionaryButton = true
+                                            self.loadingDictionaryButton = false
                                         }
                                         
                                     }
@@ -81,6 +95,12 @@ struct ContentView: View {
                                 
                         
                         VStack {
+                            
+                            if loadingGameButton {
+                                Text("\(self.loadingGame)")
+                                    .foregroundColor(Color.white)
+                                    .transition(.move(edge: .trailing))
+                            }
                         
                             if showGameGameButton {
                             
@@ -99,6 +119,12 @@ struct ContentView: View {
                             }//End Game Button
                             
                             Spacer().frame(height:10)
+                            
+                            if loadingTutorialButton {
+                                Text("\(self.loadingTutorial)")
+                                    .foregroundColor(Color.white)
+                                    .transition(.move(edge: .trailing))
+                            }
                             
                             if showTutorialButton {
                                 
@@ -123,6 +149,12 @@ struct ContentView: View {
                             
                             
                             Spacer().frame(height:10)
+                            
+                            if loadingDictionaryButton {
+                                Text("\(self.loadingDictionary)")
+                                    .foregroundColor(Color.white)
+                                    .transition(.move(edge: .trailing))
+                            }
                             
                             if showDictionaryButton {
                                 
