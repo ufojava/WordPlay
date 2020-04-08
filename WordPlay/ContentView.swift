@@ -15,6 +15,9 @@ struct ContentView: View {
     @State private var showTutorialButton = false
     @State private var showDictionaryButton = false
     
+    //Intro Music Control
+    @State private var playIntroMusic = false
+    
     
     
     var body: some View {
@@ -33,6 +36,17 @@ struct ContentView: View {
                                 .edgesIgnoringSafeArea(.all)
                             
                                 .onAppear() {
+                                    
+                                    if self.playIntroMusic == false {
+                                        
+                                        self.playIntroMusic.toggle()
+                                        
+                                        if self.playIntroMusic {
+                                            
+                                            playAudioFile(sound: "4LetterIntro", type: "mp3")
+                                        }
+                                    }
+                                    
                                     
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                     

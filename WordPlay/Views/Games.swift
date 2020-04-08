@@ -94,6 +94,7 @@ struct fourLetter: View {
     @State private  var playedWordsOne: [String] = []
     @State private var playedWordsTwo: [String] = []
     @State private var playedWordsThree: [String] = []
+     @State private var playedWordsFour: [String] = []
     
     
     //Palyer Progress
@@ -127,6 +128,9 @@ struct fourLetter: View {
         
         let srchRecord = allWords.dataStructure.filter {$0.word == inWord}
         let memoryArrayOne = self.playedWordsOne.contains(inWord)
+        let memoryArrayTwo = self.playedWordsTwo.contains(inWord)
+        let memoryArrayThree = self.playedWordsThree.contains(inWord)
+        let memoryArrayFour = self.playedWordsFour.contains(inWord)
         
         
         
@@ -139,6 +143,38 @@ struct fourLetter: View {
                 self.correctBaseScore -= 20
              
                 return
+                
+            } else if memoryArrayTwo {
+                
+                gameSynthSpeech(word: "Word has been played. 20 points deducted")
+                   
+                   //Deducct 20 points
+                   self.correctBaseScore -= 20
+                
+                   return
+                
+            } else if memoryArrayThree {
+             
+                gameSynthSpeech(word: "Word has been played. 20 points deducted")
+                   
+                   //Deducct 20 points
+                   self.correctBaseScore -= 20
+                
+                   return
+                
+                
+            } else if memoryArrayFour {
+                
+                
+            gameSynthSpeech(word: "Word has been played. 20 points deducted")
+               
+               //Deducct 20 points
+               self.correctBaseScore -= 20
+            
+               return
+                
+                    
+    //Run normal operations
             } else {
             
             self.correctBaseScore += 20
@@ -418,7 +454,7 @@ struct fourLetter: View {
                                         
                                         
                                         //Append entry into array
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                             
                                             if self.playedWordsOne.capacity <= 10 {
                                                 self.playedWordsOne.append(self.collectAllUserInputs)
@@ -427,9 +463,14 @@ struct fourLetter: View {
                                                 
                                                 self.playedWordsTwo.append(self.collectAllUserInputs)
                                                 
-                                            } else {
+                                            } else if self.playedWordsThree.capacity <= 10 {
                                                 
                                                 self.playedWordsThree.append(self.collectAllUserInputs)
+                                                
+                                            } else {
+                                                
+                                                self.playedWordsFour.append(self.collectAllUserInputs)
+                                                
                                             }
                                             
                                             
@@ -962,8 +1003,24 @@ struct fourLetter: View {
                                         .font(.system(size: 10))
                                     
                                 }
-                                 
+                                
                                 }//End of HStack Playword Three
+                                    
+                                HStack {
+                                    
+                                    ForEach(self.playedWordsFour,id: \.self) { wordsPlayed in
+                                        
+                                        Text("\(wordsPlayed)")
+                                            .foregroundColor(Color.white)
+                                            .font(.system(size: 10))
+                                    }
+                                    
+                                }
+                                    
+                                    
+                                    
+                                 
+                                
                                     
                                     
                                     
