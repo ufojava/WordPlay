@@ -28,7 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0337F7BB242F7C380080D0E5 /* WordPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0337F7BB242F7C380080D0E5 /* 4Letter Word Play.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4Letter Word Play.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0337F7BE242F7C380080D0E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0337F7C0242F7C380080D0E5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0337F7C2242F7C380080D0E5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		0337F7BC242F7C380080D0E5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0337F7BB242F7C380080D0E5 /* WordPlay.app */,
+				0337F7BB242F7C380080D0E5 /* 4Letter Word Play.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,7 +144,7 @@
 			);
 			name = WordPlay;
 			productName = WordPlay;
-			productReference = 0337F7BB242F7C380080D0E5 /* WordPlay.app */;
+			productReference = 0337F7BB242F7C380080D0E5 /* 4Letter Word Play.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -358,7 +358,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ufookoro-me.com.WordPlay";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "4Letter Word Play";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -378,7 +378,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ufookoro-me.com.WordPlay";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "4Letter Word Play";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
