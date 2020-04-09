@@ -132,6 +132,8 @@ struct fourLetter: View {
         let memoryArrayThree = self.playedWordsThree.contains(inWord)
         let memoryArrayFour = self.playedWordsFour.contains(inWord)
         
+        var scoreDiff = 0
+        
         
         
         if srchRecord.indices.contains(0) && self.gameTimeLimit != 0 {
@@ -190,7 +192,7 @@ struct fourLetter: View {
         
                 }
                     //Add Bonus score for 3 minites
-                if (self.correctWordCounter >= 5 && self.correctWordCounter <= 9) && self.gameTimeLimit == 3  {
+                if (self.correctWordCounter >= 5 && self.correctWordCounter <= 9) && self.gameTimeLimit > 120  {
                         
 
                     //Add Bonus Point
@@ -199,7 +201,7 @@ struct fourLetter: View {
                         gameSynthSpeech(word: "30 Bonus Points Added")
                     }
                         
-                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit == 3 && self.correctBaseScore <= 100 {
+                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit > 120 && self.correctBaseScore <= 100 {
                         
                         
                     
@@ -212,7 +214,7 @@ struct fourLetter: View {
                         
                         
                         //Add bonus fo 2 Mins
-                } else if (self.correctWordCounter >= 5 && self.correctWordCounter <= 9) && self.gameTimeLimit == 2 && self.correctBaseScore <= 250 {
+                } else if (self.correctWordCounter >= 5 && self.correctWordCounter <= 9) && (self.gameTimeLimit >= 60 && self.gameTimeLimit <= 120) && self.correctBaseScore <= 250 {
                         
                         
                     
@@ -223,7 +225,7 @@ struct fourLetter: View {
                         gameSynthSpeech(word: "30 Bonus Points Added")
                     }
                         
-                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit == 2  && self.correctBaseScore <= 250 {
+                } else if (self.correctWordCounter >= 10 && self.correctWordCounter <= 15) && self.gameTimeLimit < 60  && self.correctBaseScore <= 250 {
                         
                         
                     
@@ -249,7 +251,24 @@ struct fourLetter: View {
             
         } else {
             
-            gameSynthSpeech(word: "Game is over. Your final score is \(self.correctBaseScore)")
+            scoreDiff = self.playMaxScore - self.correctBaseScore
+            
+            
+            if scoreDiff <= 0 {
+                
+                gameSynthSpeech(word: "Game Over, Congratulations. Your score is \(self.correctBaseScore) and you have beating top player")
+                
+                
+            } else {
+            
+            gameSynthSpeech(word: "Game is over well done. Your final score is \(self.correctBaseScore)")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                
+                gameSynthSpeech(word: "You have a difference of \(scoreDiff). Try and match the target score")
+                
+                }
+            }
         }
         
     }//end of Check word
@@ -479,8 +498,8 @@ struct fourLetter: View {
                                         
                                     }) {
                                         
-                                        Text("Play Word").foregroundColor(Color.white)
-                                            .frame(width:100,height: 30)
+                                        Text("Play").foregroundColor(Color.white)
+                                            .frame(width:90,height: 30)
                                             .background(Color.blue)
                                             .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3))
                                         
@@ -493,8 +512,8 @@ struct fourLetter: View {
                                 
                                     
                                   //Countdown Timer
-                                    Text("Timer: \(self.gameTimeLimit)").foregroundColor(Color.white)
-                                    .frame(width:100,height: 30)
+                                    Text("Time: \(self.gameTimeLimit)").foregroundColor(Color.white)
+                                    .frame(width:95,height: 30)
                                     .background(Color.red)
                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3))
                                     
@@ -516,9 +535,19 @@ struct fourLetter: View {
                                     
                                     //Score
                                     Text("Score: \(self.correctBaseScore)").foregroundColor(Color.white)
-                                    .frame(width:100,height: 30)
+                                    .frame(width:90,height: 30)
                                     .background(Color.green)
                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3))
+                                    
+                                    //Target
+                                    Text("Target: \(self.playMaxScore)").foregroundColor(Color.white)
+                                    .frame(width:100,height: 30)
+                                    .background(Color.purple)
+                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.black,lineWidth: 3))
+                                    
+                                    
+                                    
+                                    
                                     
                                     
                                 }//End of HStack
